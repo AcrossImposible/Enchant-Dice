@@ -1,1 +1,1 @@
-# Enchant-Dice
+# Enchant Dice
