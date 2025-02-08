@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &587736952599224390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4286216826
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644961108295570807, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644961108295570807, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644961108295570807, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: color.b
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: color.g
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: color.r
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121339205616335795, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272269015784185251, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Name
+      value: Dice Iron Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373145168959192453, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 117468396fc876445a49ac9a0d47277c, type: 3}
+    - target: {fileID: 6373145168959192453, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373145168959192453, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373145168959192453, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400130694104232838, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400130694104232838, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400130694104232838, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4784314
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 312f145242329d24f99773a44750c0da, type: 3}
+--- !u!114 &950084581499508407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &2232691183543809329 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1644961108295570807, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2503820701692200818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3069014087643834164, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3945596108907235388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4533327558579087482, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4437175445016756074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3871983154818653996, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4684538664851701221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5272269015784185251, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7525033917827511394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684538664851701221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2848d439a46465b4b8f66ceaa2ea64ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.47843137, g: 0.47843137, b: 0.47843137, a: 1}
+  baseDamage: 9
+  fireRate: 1
+  stepDamage: 3
+  stepFireRate: 0.03
+  stages:
+  - {fileID: 4437175445016756074}
+  - {fileID: 3945596108907235388}
+  - {fileID: 8600731525300901906}
+  - {fileID: 2503820701692200818}
+  - {fileID: 5489937857822905195}
+  - {fileID: 9220111439671876724}
+  labelIncrese: {fileID: 950084581499508407}
+  border: {fileID: 2232691183543809329}
+  icon: {fileID: 5789934117068152259}
+  projectilePrefab: {fileID: 7786487558670954568, guid: 98bbed2d38595c940ae4c3eee1030e70, type: 3}
+  title: Iron
+  info: Attacks the opponent with the most life points. Deals double damage to bosses
+    and mini-bosses.
+  idxInInventory: 5
+--- !u!1 &5489937857822905195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4906710010497397549, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5789934117068152259 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6373145168959192453, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8600731525300901906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9183930785627666516, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9220111439671876724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8636889399107550258, guid: 312f145242329d24f99773a44750c0da, type: 3}
+  m_PrefabInstance: {fileID: 587736952599224390}
+  m_PrefabAsset: {fileID: 0}
