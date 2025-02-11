@@ -9,6 +9,7 @@ public class Language
 	{
 		if (Application.systemLanguage == SystemLanguage.English)
 			return;
+
 		if (Application.systemLanguage != SystemLanguage.Russian)
 			return;
 

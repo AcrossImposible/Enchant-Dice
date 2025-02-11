@@ -89,12 +89,21 @@ public class PanelIncrease : MonoBehaviour
         chanceIncrese += (additionalChanceIncrese * 10) / dice.IncreaseStage;
         countRequiredItems = 10 * (int)Mathf.Pow(dice.IncreaseStage, 1.57f);
 
-        labelChance.text = $"Increse chance {chanceIncrese}%";
+        var text = $"Increse chance {chanceIncrese}%";
+        if (Language.Rus)
+        {
+            text = $"Шанс усиления {chanceIncrese}%";
+        }
+        labelChance.text = text;
 
         labelCountRequiredItem.text = $"x{countRequiredItems}";
 
-        labelAdditionalChance.text = $"Increase the chance of gain +{additionalChanceIncrese}";
-    
+        text = $"Increase the chance of gain +{additionalChanceIncrese}";
+        if (Language.Rus)
+        {
+            text = $"Увеличение шанса усиление +{additionalChanceIncrese}";
+        }
+        labelAdditionalChance.text = text;
         btnIncrease.gameObject.SetActive(!(dice.IncreaseStage == 5));
 
     }

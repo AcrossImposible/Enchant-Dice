@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
         UpdateMoveDirection();
 
-        reward += 10 * (GameManager.Instance.Wave / 8);
+        reward += 10 * (GameManager.Instance.Wave / 5);
 
         currentHP = CalculateHP(number);
     }
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         int koef = GameManager.Instance.IsPVP ? 50 : 10;
         var bonusByNumber = koef * (number / 10);
 
-        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.18f;
+        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.8f;
         var bonusByWave = 10 * (int)Mathf.Pow(GameManager.Instance.Wave, powerValue);
 
         return baseHP + bonusByNumber + bonusByWave;

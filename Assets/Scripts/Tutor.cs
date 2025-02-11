@@ -8,10 +8,7 @@ using System;
 public class Tutor : MonoBehaviour
 {
     [SerializeField] TMP_Text labelInfo;
-    [SerializeField] GameObject labelCoins;
-    [SerializeField] GameObject labelStones;
-    [SerializeField] Button btnSplitting;
-    [SerializeField] Button btnSpawnDice;
+    
     [SerializeField] Button tutorPanel;
     [SerializeField] Button panelIncreaseTutor;
     [SerializeField] TMP_Text labelInfoIncreaseTutor;
@@ -20,13 +17,24 @@ public class Tutor : MonoBehaviour
 
     [SerializeField] List<TutorInfo> tutorInfos;
 
+    GameObject labelCoins;
+    GameObject labelStones;
+    Button btnSplitting;
+    Button btnSpawnDice;
+
     Player player;
     int idxStage;
     float timer;
     bool isRunTimer;
 
-    private void Start()
+    public void Init()
     {
+        var ui = UIStarter.Single.ActiveUI;
+        labelCoins = ui.labelCountPoints.gameObject;
+        labelStones = ui.labelCountPowerStones.gameObject;
+        btnSplitting = ui.btnSplitting;
+        btnSpawnDice = ui.btnSpawnDice;
+
         labelCoins.SetActive(false);
         labelStones.SetActive(false);
         tutorPanel.gameObject.SetActive(true);
@@ -93,7 +101,7 @@ public class Tutor : MonoBehaviour
 
     private void TutorPanel_Clicked()
     {
-        if(idxStage == 3)
+        if (idxStage == 3)
         {
             tutorPanel.gameObject.SetActive(false);
         }
@@ -108,11 +116,10 @@ public class Tutor : MonoBehaviour
             isRunTimer = true;
         }
 
-        if(idxStage == 4 && dice.IncreaseStage == 1)
+        if (idxStage == 4 && dice.IncreaseStage == 1)
         {
             idxStage++;
             UpdateTutor();
-
         }
     }
 

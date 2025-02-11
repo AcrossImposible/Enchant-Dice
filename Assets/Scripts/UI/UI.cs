@@ -8,9 +8,9 @@ using System;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] Button btnSpawnDice;
+    [SerializeField] public Button btnSpawnDice;
     [SerializeField] Button btnMenu;
-    [SerializeField] Button btnSplitting;
+    [SerializeField] public Button btnSplitting;
     [SerializeField] Button btnOkSplit;
     [SerializeField] Button btnCancelSplit;
     [SerializeField] GameObject panelWave;
@@ -24,8 +24,8 @@ public class UI : MonoBehaviour
     [SerializeField] TMP_Text labelResult;
     [SerializeField] TMP_Text labelCountWaves;
     [SerializeField] TMP_Text labelCountCards;
-    [SerializeField] TMP_Text labelCountPoints;
-    [SerializeField] TMP_Text labelCountPowerStones;
+    [SerializeField] public TMP_Text labelCountPoints;
+    [SerializeField] public TMP_Text labelCountPowerStones;
     [SerializeField] TMP_Text labelGolda;
     [SerializeField] TMP_Text labelExp;
     [SerializeField] TMP_Text txtMineNickname;
@@ -35,7 +35,7 @@ public class UI : MonoBehaviour
     Player minePlayer;
     Dice diceToSplit;
 
-    private void Awake()
+    public void Init()
     {
         btnSpawnDice.onClick.AddListener(SpawnDice_Clicked);
         btnMenu.onClick.AddListener(BtnMenu_Clicked);
@@ -58,7 +58,34 @@ public class UI : MonoBehaviour
         if (room != null)
             txtOtherNickname.text = room.Players.ToList().Find(p => !p.Value.IsLocal).Value.NickName;
         else
-            txtOtherNickname.text = "Свежая капуста";
+            txtOtherNickname.text = GetBotName();
+
+        ShowPanelWave();
+
+        panelComplete.SetActive(false);
+        panelSplittingTooltip.SetActive(false);
+        panelConfirmSplitting.SetActive(false);
+    }
+
+    private string GetBotName()
+    {
+        string[] names = new[] 
+        { 
+            "Свежая капуста",
+            "Кто здесь?",
+            "Армэн",
+            "Светильник",
+            "Ем зубную пасту",
+            "Меня пасут",
+            "Восэм хромосом",
+            "Дружу с мхом",
+            "Лизнуть бы",
+            "Кровать",
+            "Куриная нога",
+            "Твой бывший",
+        };
+
+        return names[UnityEngine.Random.Range(0, names.Length)];
     }
 
     private void Ebychiy_Slychayai()
@@ -143,15 +170,6 @@ public class UI : MonoBehaviour
         {
             Photon.Pun.PhotonNetwork.LeaveRoom();
         }
-    }
-
-    private void Start()
-    {
-        ShowPanelWave();
-
-        panelComplete.SetActive(false);
-        panelSplittingTooltip.SetActive(false);
-        panelConfirmSplitting.SetActive(false);
     }
 
     void SpawnDice_Clicked()

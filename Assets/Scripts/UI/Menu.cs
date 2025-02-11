@@ -41,13 +41,14 @@ public class Menu : MonoBehaviour
     [SerializeField] TMP_InputField inputNickname;
 
 
-    private void Start()
+    public void Init()
     {
+        gameObject.SetActive(true);
+
 #if UNITY_ANDROID
         Saver.Load();
 #endif
 #if UNITY_WEBGL
-
         YG.YandexGame.GetDataEvent += Data_Geted;
 #endif
         inputNickname.onValueChanged.AddListener(Nickname_Changed);
@@ -87,16 +88,15 @@ public class Menu : MonoBehaviour
         if (YG.YandexGame.savesData.deck != null)
         {
             Saver.ConvertToUserData();
-#endif
-            UpdateUI();
-#if UNITY_WEBGL
         }
 #endif
+        UpdateUI();
+
     }
 
     private void Nickname_Changed(string value)
     {
-        #if UNITY_WEBGL
+#if UNITY_WEBGL
 
         if (YG.YandexGame.savesData.newPlayerName == value)
             return;
@@ -119,16 +119,12 @@ public class Menu : MonoBehaviour
         Photon.Pun.PhotonNetwork.NickName = data.newPlayerName;
 #endif
 
-        UpdateUI();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        //UpdateUI();
     }
 
     void UpdateUI()
     {
-#if UNITY_WEBGL
-        if (YG.YandexGame.savesData == null)
-            return;
-#endif
-
         panelDeck.Init(allDices);
         var txtCards = Language.Rus ? "Карточки" : "Cards";
         labelCountCards.text = $"{txtCards} {User.Data.countCards}/{CARDS_TO_OPEN_CHEST}";

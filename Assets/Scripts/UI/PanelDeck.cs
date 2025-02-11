@@ -23,6 +23,8 @@ public class PanelDeck : MonoBehaviour
 
     public void Init(List<Dice> allDices)
     {
+        //Clear();
+
         this.allDices = allDices;
 
         for (int i = 0; i < 5; i++)
@@ -240,5 +242,13 @@ public class PanelDeck : MonoBehaviour
         }
 
         return -1;
+    }
+
+    private void Clear()
+    {
+        foreach (Transform item in deckParent)
+        {
+            Destroy(item.gameObject);
+        }
     }
 }

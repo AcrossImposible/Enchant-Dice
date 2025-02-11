@@ -57,26 +57,34 @@ public class GameManager : MonoBehaviour
         EventsHolder.onEnemyAnniged.AddListener(Enemy_Anniged);
     }
 
-    private void Enemy_Anniged(Enemy enemy)
-    {
-        allEnemies.Remove(enemy);
-
-        if(allEnemies.Count == 0 && !spawning)
-        {
-            Wave++;
-
-            SpawnEnemies();
-            // HOT FIX
-            FindObjectOfType<UI>().ShowPanelWave();
-        }
-    }
-
+    
     private void Start()
     {
         SpawnEnemies();
 
         if (IsPVP)
             spawnDelay /= 1.2f;
+
+        SetCameraSize();
+    }
+
+    private void Enemy_Anniged(Enemy enemy)
+    {
+        allEnemies.Remove(enemy);
+
+        if (allEnemies.Count == 0 && !spawning)
+        {
+            Wave++;
+
+            SpawnEnemies();
+            // HOT FIX
+            UIStarter.Single.ActiveUI.ShowPanelWave();
+
+            foreach (var player in allPlayers)
+            {
+                player.Coins += 30 * Wave;
+            }
+        }
     }
 
     void SpawnEnemies()
@@ -141,7 +149,20 @@ public class GameManager : MonoBehaviour
         EventsHolder.playerSpawnedMine?.Invoke(p);
     }
 
-    
+    private void SetCameraSize()
+    {
+#if !UNITY_EDITOR
+        if (Application.isMobilePlatform)
+#endif
+        {
+            var resFactor = (float)Screen.height / (float)Screen.width;
+            AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(1.7f, 11);
+            curve.AddKey(2.3f, 13.9f);
+
+            Camera.main.orthographicSize = curve.Evaluate(resFactor);
+        }
+    }
     
 }
 

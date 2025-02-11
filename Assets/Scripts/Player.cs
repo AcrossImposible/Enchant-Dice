@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
     {
         User result = new();
 
-        result.isBot = true;
+        result. isBot = true;
 
         if (!User.Data.tutorCompleted)
         {

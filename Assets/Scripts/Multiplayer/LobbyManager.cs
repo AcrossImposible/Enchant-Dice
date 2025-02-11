@@ -65,8 +65,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            btnConnect.gameObject.SetActive(true);
-            btnPvP.gameObject.SetActive(true);
+            ShowBattleButtons();
         }
 
         var ebat = FindObjectOfType<Advertising>();
@@ -101,16 +100,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Log("Некий хуежуй: " + PhotonNetwork.NickName + " присоеденился к пиздатой игруле");
         onPhotonConnection?.Invoke(PhotonNetwork.NickName);
 
-        if (!User.Data.tutorCompleted)
-            return;
-
-        btnConnect.gameObject.SetActive(true);
-        btnPvP.gameObject.SetActive(true);
+        ShowBattleButtons();
     }
 
     public override void OnConnected()
     {
         Log("шо блять?");
+    }
+
+    private void ShowBattleButtons()
+    {
+        if (!User.Data.tutorCompleted)
+            return;
+
+        btnConnect.gameObject.SetActive(true);
+        btnPvP.gameObject.SetActive(true);
     }
 
     void CreateRoom()
