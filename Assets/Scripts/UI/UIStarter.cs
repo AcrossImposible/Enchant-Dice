@@ -19,16 +19,16 @@ public class UIStarter : MonoBehaviour
 
         if (Screen.height > Screen.width)
         {
-            uiPortrait.Init();
             uiPortrait.gameObject.SetActive(true);
             uiLandscape.gameObject.SetActive(false);
+            uiPortrait.Init();
             ActiveUI = uiPortrait;
         }
         else
         {
-            uiLandscape.Init();
             uiLandscape.gameObject.SetActive(true);
             uiPortrait.gameObject.SetActive(false);
+            uiLandscape.Init();
             ActiveUI = uiLandscape;
         }
     }

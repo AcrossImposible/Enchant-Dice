@@ -15,15 +15,16 @@ namespace YG
         // Тестовые сохранения для демо сцены
         // Можно удалить этот код, но тогда удалите и демо (папка Example)
         public int money = 1;                       // Можно задать полям значения по умолчанию
-        public string newPlayerName = "Hello!";
-        public bool[] openLevels = new bool[3];
-        internal int countCards;
-        internal int countStones = 100;
-        internal bool tutorCompleted;
-        internal List<User.Dice> deck;
-        internal List<User.Dice> inventory;
-        internal int exp;
-        internal int lvl = 1;
+        public string newPlayerName = "Игрок";
+        
+        public int countCards;
+        public int countStones = 100;
+        public bool tutorCompleted;
+        public List<User.Dice> deck;
+        public List<User.Dice> inventory;
+        public int exp;
+        public int lvl = 1;
+        public bool[] openLevels;
 
         // Ваши сохранения
 
@@ -36,8 +37,6 @@ namespace YG
         public SavesYG()
         {
             // Допустим, задать значения по умолчанию для отдельных элементов массива
-
-            openLevels[1] = true;
         }
     }
 }

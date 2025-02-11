@@ -6,10 +6,15 @@ public class Saver : MonoBehaviour
 {
     public static void Save()
     {
+#if UNITY_WEBGL
+        ConvertToYG();
+        YG.YandexGame.SaveProgress();
+#else
         var jsonStr = Json.Serialize(User.Data);
 
         PlayerPrefs.SetString("data", jsonStr);
         PlayerPrefs.Save();
+#endif
     }
 
     public static User Load()
@@ -54,7 +59,6 @@ public class Saver : MonoBehaviour
             User.Data.deck = data.deck;
             User.Data.inventory = data.inventory;
         }
-
     }
 #endif
 }

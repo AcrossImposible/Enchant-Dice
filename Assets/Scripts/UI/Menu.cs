@@ -43,6 +43,8 @@ public class Menu : MonoBehaviour
 
     public void Init()
     {
+        //print(YG.YandexGame.savesData.tutorCompleted);
+
         gameObject.SetActive(true);
 
 #if UNITY_ANDROID
@@ -66,8 +68,8 @@ public class Menu : MonoBehaviour
         btnOpenChest.onClick.AddListener(BtnChest_Clicked);
 
         checkGameVersion.versionNotMatch += GameVersion_NotMatched;
-#if UNITY_WEBGL
 
+#if UNITY_WEBGL
         inputNickname.text = YG.YandexGame.savesData?.newPlayerName ?? "Твоё имя";
 #endif
         tutorReset.onClick.AddListener(() => 
@@ -85,10 +87,10 @@ public class Menu : MonoBehaviour
         });
 
 #if UNITY_WEBGL
-        if (YG.YandexGame.savesData.deck != null)
-        {
-            Saver.ConvertToUserData();
-        }
+        //if (YG.YandexGame.savesData.deck != null)
+        //{
+        //    Saver.ConvertToUserData();
+        //}
 #endif
         UpdateUI();
 
@@ -110,7 +112,6 @@ public class Menu : MonoBehaviour
     private void Data_Geted()
     {
 #if UNITY_WEBGL
-
         Saver.ConvertToUserData();
 
         var data = YG.YandexGame.savesData;
@@ -125,6 +126,7 @@ public class Menu : MonoBehaviour
 
     void UpdateUI()
     {
+        print(YG.YandexGame.savesData.countCards);
         panelDeck.Init(allDices);
         var txtCards = Language.Rus ? "Карточки" : "Cards";
         labelCountCards.text = $"{txtCards} {User.Data.countCards}/{CARDS_TO_OPEN_CHEST}";
@@ -207,6 +209,12 @@ public class Menu : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            print(YG.YandexGame.savesData.tutorCompleted);
+            print(YG.YandexGame.savesData.countCards);
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             User.Data.countCards += 3;
@@ -233,6 +241,7 @@ public class Menu : MonoBehaviour
         {
             User.Data.tutorCompleted = true;
             Saver.Save();
+            print(YG.YandexGame.savesData.tutorCompleted);
         }
 #endif
         string txt = Language.Rus ? "Уровень" : "LvL";
