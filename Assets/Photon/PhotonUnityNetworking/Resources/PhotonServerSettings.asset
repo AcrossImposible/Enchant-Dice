@@ -24,11 +24,11 @@ MonoBehaviour:
     Port: 443
     ProxyServer: 
     Protocol: 5
-    EnableProtocolFallback: 1
+    EnableProtocolFallback: 0
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: tr
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1

@@ -581,7 +581,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4751555616108864149}
   - component: {fileID: 2957533547258701837}
-  - component: {fileID: 3009788817675227036}
   - component: {fileID: 6749001078171117697}
   - component: {fileID: 217167753724097144}
   - component: {fileID: 8574834316089592351}
@@ -656,22 +655,8 @@ MonoBehaviour:
   - {fileID: 6165432775719588350, guid: b275b5aae60bd6e4abca5c95df68d23d, type: 3}
   - {fileID: 4261554570971905992, guid: 9cc6d6a152fdc584796c06f0f36a8862, type: 3}
   tutorReset: {fileID: 6469078317068236240}
-  checkGameVersion: {fileID: 3009788817675227036}
+  checkGameVersion: {fileID: 0}
   inputNickname: {fileID: 9081468544650834321}
---- !u!114 &3009788817675227036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652687436296067817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a73c8fe2be59b5d44b1c70ef51974a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companyName: WogerGames
-  gameName: RandomIncreaseDice
 --- !u!223 &6749001078171117697
 Canvas:
   m_ObjectHideFlags: 0

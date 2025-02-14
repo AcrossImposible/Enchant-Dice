@@ -15,8 +15,8 @@ public class Menu : MonoBehaviour
     [Space]
 
     [SerializeField] Button btnEbash;
-    [SerializeField] Button btnPVP;
-    [SerializeField] Button btnCoop;
+    [SerializeField] public Button btnPVP;
+    [SerializeField] public Button btnCoop;
     [SerializeField] Button btnDeck;
     [SerializeField] Button btnOpenChest;
     [SerializeField] Button btnTutor;
@@ -37,7 +37,7 @@ public class Menu : MonoBehaviour
     [SerializeField] List<Dice> allDices;
 
     [SerializeField] Button tutorReset;
-    [SerializeField] CheckGameVersion checkGameVersion;
+    //[SerializeField] CheckGameVersion checkGameVersion;
     [SerializeField] TMP_InputField inputNickname;
 
 
@@ -67,7 +67,7 @@ public class Menu : MonoBehaviour
         btnPVP.onClick.AddListener(BtnPVP_Clicked);
         btnOpenChest.onClick.AddListener(BtnChest_Clicked);
 
-        checkGameVersion.versionNotMatch += GameVersion_NotMatched;
+        //checkGameVersion.versionNotMatch += GameVersion_NotMatched;
 
 #if UNITY_WEBGL
         inputNickname.text = YG.YandexGame.savesData?.newPlayerName ?? "Твоё имя";

@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         int koef = GameManager.Instance.IsPVP ? 50 : 10;
         var bonusByNumber = koef * (number / 10);
 
-        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.8f;
+        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.5f;
         var bonusByWave = 10 * (int)Mathf.Pow(GameManager.Instance.Wave, powerValue);
 
         return baseHP + bonusByNumber + bonusByWave;
