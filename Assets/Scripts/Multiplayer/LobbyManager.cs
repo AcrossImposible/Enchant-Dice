@@ -71,10 +71,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         btnConnect = MenuStarter.Single.ActiveMenu.btnCoop;
         btnPvP = MenuStarter.Single.ActiveMenu.btnPVP;
 
-        print("ща буду подписывать =-=-=-=-=-=-=-=-=-");
+        //print("ща буду подписывать =-=-=-=-=-=-=-=-=-");
         btnConnect.onClick.AddListener(JoinRoom);
         EventsHolder.onBtnPvPClicked.AddListener(BtnPvP_Clicked);
-        print("вроде подписал =-=-=-=-=-=-=-=-=");
+        //print("вроде подписал =-=-=-=-=-=-=-=-=");
 
         if (!PhotonNetwork.IsConnected)
         {
