@@ -126,7 +126,7 @@ public class Menu : MonoBehaviour
 
     void UpdateUI()
     {
-        print(YG.YandexGame.savesData.countCards);
+        //print(YG.YandexGame.savesData.countCards);
         panelDeck.Init(allDices);
         var txtCards = Language.Rus ? "Карточки" : "Cards";
         labelCountCards.text = $"{txtCards} {User.Data.countCards}/{CARDS_TO_OPEN_CHEST}";
