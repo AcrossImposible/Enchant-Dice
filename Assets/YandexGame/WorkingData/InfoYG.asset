@@ -36,7 +36,7 @@ MonoBehaviour:
   flush: 0
   localSaveSync: 1
   saveCloudInterval: 5
-  saveOnQuitGame: 0
+  saveOnQuitGame: 1
   quitGameParameters:
     objectName: YandexGame
     methodName: _SaveProgress
@@ -246,6 +246,35 @@ MonoBehaviour:
     it: []
     de: []
     hi: []
+  fontsTMP:
+    defaultFont: []
+    ru: []
+    en: []
+    tr: []
+    az: []
+    be: []
+    he: []
+    hy: []
+    ka: []
+    et: []
+    fr: []
+    kk: []
+    ky: []
+    lt: []
+    lv: []
+    ro: []
+    tg: []
+    tk: []
+    uk: []
+    uz: []
+    es: []
+    pt: []
+    ar: []
+    id: []
+    ja: []
+    it: []
+    de: []
+    hi: []
   fontsSizeCorrect:
     ru: 
     en: 
@@ -304,7 +333,7 @@ MonoBehaviour:
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0
-  debug: 1
+  debug: 0
   archivingBuild: 1
   logoImageFormat: 1
   backgroundImageFormat: 3

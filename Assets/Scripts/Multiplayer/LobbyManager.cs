@@ -16,15 +16,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     [Header("UI References")]
     [SerializeField] TextMeshProUGUI logText;
-    [SerializeField] Button btnConnect;
-    [SerializeField] Button btnPvP;
+    
     [SerializeField] TMP_InputField inputField;
-
-    [Space]
-
-    [SerializeField] TMP_Text btnLabel;
-
+    
+    TMP_Text btnLabel;
     ExitGames.Client.Photon.Hashtable roomProps;
+    Button btnConnect;
+    Button btnPvP;
+    GameObject connectingInfo;
+
 
     public System.Action<string> onPhotonConnection;
     string roomType;
@@ -41,13 +41,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.NickName == string.Empty)
         {
             if (Language.Rus)
-                PhotonNetwork.NickName = "Игрок " + Random.Range(100, 999);
+                PhotonNetwork.NickName = "Игрок "  + Random.Range(100, 999);
             else
                 PhotonNetwork.NickName = "Player " + Random.Range(100, 999);
         }
 
-        btnConnect.onClick.AddListener(JoinRoom);
-        EventsHolder.onBtnPvPClicked.AddListener(BtnPvP_Clicked);
+        
 
         //PhotonNetwork.AuthValues = new AuthenticationValues(PhotonNetwork.NickName);
         if (!PhotonNetwork.IsConnected)
@@ -59,14 +58,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             PhotonNetwork.SendRate = 60;
 
             PhotonNetwork.ConnectUsingSettings();
-            
-            btnConnect.gameObject.SetActive(false);
-            btnPvP.gameObject.SetActive(false);
         }
-        else
-        {
-            ShowBattleButtons();
-        }
+        
 
         var ebat = FindObjectOfType<Advertising>();
         ebat.onVideoClosed += () => PhotonNetwork.ConnectUsingSettings();
@@ -74,11 +67,48 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.KeepAliveInBackground = 180;
     }
 
+    private void Start()
+    {
+        btnConnect = MenuStarter.Single.ActiveMenu.btnCoop;
+        btnPvP = MenuStarter.Single.ActiveMenu.btnPVP;
+        connectingInfo = MenuStarter.Single.ActiveMenu.connectingInfo;
+
+        connectingInfo.SetActive(true);
+
+        //print("ща буду подписывать =-=-=-=-=-=-=-=-=-");
+        btnConnect.onClick.AddListener(JoinRoom);
+        EventsHolder.onBtnPvPClicked.AddListener(BtnPvP_Clicked);
+        //print("вроде подписал =-=-=-=-=-=-=-=-=");
+
+        if (!PhotonNetwork.IsConnected)
+        {
+            btnConnect.gameObject.SetActive(false);
+            btnPvP.gameObject.SetActive(false);
+        }
+        else
+        {
+            ShowBattleButtons();
+        }
+    }
+
     private void BtnPvP_Clicked(Button btn)
     {
         btnPvP = btn;
 
         roomType = "pvp";
+
+        roomProps = new();
+        roomProps["t"] = roomType;
+        PhotonNetwork.JoinRandomRoom(roomProps, maxPlayers);
+    }
+
+    public void JoinRoom()
+    {
+        print("нажал");
+        btnLabel = btnConnect.GetComponentInChildren<TMP_Text>();
+        btnLabel.text = Language.Rus ? "Поиск игры.." : "Game searching..";
+
+        roomType = "coop";
 
         roomProps = new();
         roomProps["t"] = roomType;
@@ -110,11 +140,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void ShowBattleButtons()
     {
+        connectingInfo.SetActive(false);
+
         if (!User.Data.tutorCompleted)
+        {
             return;
+        }
 
         btnConnect.gameObject.SetActive(true);
         btnPvP.gameObject.SetActive(true);
+        
+    }
+
+    private void HideBattleButtons()
+    {
+        btnConnect?.gameObject.SetActive(false);
+        btnPvP?.gameObject.SetActive(false);
+
+        connectingInfo?.SetActive(true);
     }
 
     void CreateRoom()
@@ -134,17 +177,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
 
-
-    public void JoinRoom()
-    {
-        btnLabel.text = Language.Rus ? "Поиск игры.." : "Game searching..";
-
-        roomType = "coop";
-
-        roomProps = new();
-        roomProps["t"] = roomType;
-        PhotonNetwork.JoinRandomRoom(roomProps, maxPlayers);
-    }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -175,7 +207,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         IEnumerator PlayersWaiting()
         {
-            while(waitTime < timeThresold)
+            while (waitTime < timeThresold)
             {
                 yield return null;
 
@@ -193,7 +225,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            if(waitTime >= timeThresold)
+            if (waitTime >= timeThresold)
             {
                 isOffline = true;
                 PhotonNetwork.LeaveRoom();
@@ -207,7 +239,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     if (roomType == "pvp")
                         PhotonNetwork.LoadLevel("Piska na Pisky");
                 }
-            }            
+            }
         }
     }
 
@@ -216,21 +248,38 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (isOffline)
         {
             if (roomType == "coop")
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("Igra blat");
             if (roomType == "pvp")
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("Piska na Pisky");
         }
-           
     }
 
     private void OnApplicationPause(bool pause)
     {
         if (!pause)
         {
-            StartCoroutine(Connect());
+            if (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
+            {
+                HideBattleButtons();
+                DelayConnect();
+            }
         }
+    }
 
-        IEnumerator Connect()
+    private void OnApplicationFocus(bool focus)
+    {
+        if (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer)
+        {
+            HideBattleButtons();
+            DelayConnect();
+        }
+    }
+
+    private void DelayConnect()
+    {
+        StartCoroutine(Delay());
+
+        static IEnumerator Delay()
         {
             yield return new WaitForSeconds(0.3f);
 
@@ -238,6 +287,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }
 
+   
 
     private void Update()
     {
@@ -247,6 +297,38 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             PlayerPrefs.DeleteAll();
         }
 #endif
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            print(PhotonNetwork.NetworkClientState);
+            print(PhotonNetwork.CountOfPlayersOnMaster);
+            print(PhotonNetwork.CountOfRooms);
+        }
+
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    print("запускаю коннект");
+        //    PhotonNetwork.ConnectUsingSettings();
+        //}
+
+        CheckConnection();
+    }
+
+    float timerCheckConnection;
+    private void CheckConnection()
+    {
+        timerCheckConnection += Time.deltaTime;
+
+        if (timerCheckConnection > 0.5f)
+        {
+            timerCheckConnection = 0;
+
+            if (!PhotonNetwork.IsConnected)
+            {
+                HideBattleButtons();
+                DelayConnect();
+            }
+        }
     }
 
     void Log(string msg)

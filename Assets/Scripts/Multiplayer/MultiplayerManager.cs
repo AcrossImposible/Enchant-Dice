@@ -37,9 +37,9 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     private void Awake()
     {
-        if (!PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.IsConnected && SceneManager.GetActiveScene().name != "Tutor Epta")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menuha");
         }
 
         if (Instance != null)
@@ -320,7 +320,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         if (!applicationIsQuit)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menuha");
         }
     }
 

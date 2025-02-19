@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using Photon.Pun;
 
 namespace YG
 {
@@ -15,7 +16,7 @@ namespace YG
         // Тестовые сохранения для демо сцены
         // Можно удалить этот код, но тогда удалите и демо (папка Example)
         public int money = 1;                       // Можно задать полям значения по умолчанию
-        public string newPlayerName = "Игрок";
+        public string newPlayerName;
         
         public int countCards;
         public int countStones = 100;
@@ -24,6 +25,7 @@ namespace YG
         public List<User.Dice> inventory;
         public int exp;
         public int lvl = 1;
+        public int maxWave;
         public bool[] openLevels;
 
         // Ваши сохранения

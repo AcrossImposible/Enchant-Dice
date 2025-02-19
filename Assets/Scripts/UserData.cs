@@ -29,6 +29,7 @@ public class User
     public int golda;
     public int ExpToNextLvl => ((int)(Mathf.Pow(lvl * 18, Settings.EXP_EXPONENTIATION) / 10)) * 10;
     public int crit;
+    public int maxWave;
     
 
     public List<Dice> deck = new()

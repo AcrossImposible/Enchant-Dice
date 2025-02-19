@@ -15,8 +15,9 @@ public class Menu : MonoBehaviour
     [Space]
 
     [SerializeField] Button btnEbash;
-    [SerializeField] Button btnPVP;
-    [SerializeField] Button btnCoop;
+    [SerializeField] public Button btnPVP;
+    [SerializeField] public Button btnCoop;
+    [SerializeField] public GameObject connectingInfo;
     [SerializeField] Button btnDeck;
     [SerializeField] Button btnOpenChest;
     [SerializeField] Button btnTutor;
@@ -26,6 +27,7 @@ public class Menu : MonoBehaviour
     [SerializeField] TMP_Text labelExp;
     [SerializeField] TMP_Text labelGold;
     [SerializeField] TMP_Text labelCountCards;
+    [SerializeField] TMP_Text labelMaxWave;
 
     [Space]
 
@@ -37,9 +39,9 @@ public class Menu : MonoBehaviour
     [SerializeField] List<Dice> allDices;
 
     [SerializeField] Button tutorReset;
-    [SerializeField] CheckGameVersion checkGameVersion;
     [SerializeField] TMP_InputField inputNickname;
 
+    static bool loaded;
 
     public void Init()
     {
@@ -49,11 +51,13 @@ public class Menu : MonoBehaviour
 
 #if UNITY_ANDROID
         Saver.Load();
+        loaded = true;
 #endif
 #if UNITY_WEBGL
         YG.YandexGame.GetDataEvent += Data_Geted;
 #endif
         inputNickname.onValueChanged.AddListener(Nickname_Changed);
+        inputNickname.onSubmit.AddListener(Nickname_Submited);
 
         panelChestResult.SetActive(false);
         panelDeck.gameObject.SetActive(false);
@@ -67,11 +71,24 @@ public class Menu : MonoBehaviour
         btnPVP.onClick.AddListener(BtnPVP_Clicked);
         btnOpenChest.onClick.AddListener(BtnChest_Clicked);
 
-        checkGameVersion.versionNotMatch += GameVersion_NotMatched;
-
+        //checkGameVersion.versionNotMatch += GameVersion_NotMatched;
+        if (loaded)
+        {
 #if UNITY_WEBGL
-        inputNickname.text = YG.YandexGame.savesData?.newPlayerName ?? "Твоё имя";
+
+            if (YG.YandexGame.savesData != null && string.IsNullOrEmpty(YG.YandexGame.savesData.newPlayerName))
+            {
+                var str = Language.Rus ? "Игрок " : "Player ";
+                inputNickname.text = $"{str}{Random.Range(100, 999)}";
+            }
+            else
+            {
+                inputNickname.text = YG.YandexGame.savesData?.newPlayerName;
+            }
 #endif
+            labelMaxWave.text = Language.Rus ? $"Максимально прожито волн {User.Data.maxWave}" : $"Max surved waves {User.Data.maxWave}";
+        }
+
         tutorReset.onClick.AddListener(() => 
         { 
             User.Data.tutorCompleted = false;
@@ -96,10 +113,14 @@ public class Menu : MonoBehaviour
 
     }
 
+    private void Nickname_Submited(string value)
+    {
+        Nickname_Changed(value);
+    }
+
     private void Nickname_Changed(string value)
     {
 #if UNITY_WEBGL
-
         if (YG.YandexGame.savesData.newPlayerName == value)
             return;
 
@@ -107,6 +128,25 @@ public class Menu : MonoBehaviour
         YG.YandexGame.SaveProgress();
 #endif
         Photon.Pun.PhotonNetwork.NickName = value;
+
+        DelaySave();
+    }
+
+    private void DelaySave()
+    {
+        StartCoroutine(Delay());
+
+        IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(3);
+
+#if UNITY_WEBGL
+            YG.YandexGame.savesData.newPlayerName = inputNickname.text;
+            YG.YandexGame.SaveProgress();
+#endif
+
+            Saver.Save();
+        }
     }
 
     private void Data_Geted()
@@ -119,9 +159,9 @@ public class Menu : MonoBehaviour
 
         Photon.Pun.PhotonNetwork.NickName = data.newPlayerName;
 #endif
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        //UpdateUI();
+        loaded = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menuha");
+        print($"Данные загружены");
     }
 
     void UpdateUI()
@@ -148,7 +188,8 @@ public class Menu : MonoBehaviour
 
     private void BtnTutor_Clicked()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+        print("Загружаю тутор");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tutor Epta");
     }
 
     private void BtnPVP_Clicked()
@@ -209,12 +250,7 @@ public class Menu : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            print(YG.YandexGame.savesData.tutorCompleted);
-            print(YG.YandexGame.savesData.countCards);
-        }
-
+   
         if (Input.GetKeyDown(KeyCode.P))
         {
             User.Data.countCards += 3;
@@ -234,16 +270,24 @@ public class Menu : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-            PlayerPrefs.DeleteAll();
+        
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             User.Data.tutorCompleted = true;
             Saver.Save();
-            print(YG.YandexGame.savesData.tutorCompleted);
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            print("Загружаю тутор");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Tutor Epta");
         }
 #endif
+
+        if (Input.GetKeyDown(KeyCode.R))
+            PlayerPrefs.DeleteAll();
+
         string txt = Language.Rus ? "Уровень" : "LvL";
         labelExp.text = $"{txt} {User.Data.lvl} ({User.Data.exp}/{User.Data.ExpToNextLvl})";
         txt = Language.Rus ? "Золото" : "Gold";

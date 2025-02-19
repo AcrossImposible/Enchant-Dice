@@ -29,6 +29,8 @@ public class Dice : MonoBehaviour
 
     public int idxInInventory = -1;
 
+    public float finalFireRate;
+
     public Color Color => color;
     public int Stage { get; set; } = 0;
     public int IncreaseStage { get; set; } = 0;
@@ -124,7 +126,7 @@ public class Dice : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Attack();
 
@@ -132,6 +134,8 @@ public class Dice : MonoBehaviour
         {
             AddDots();
         }
+
+        finalFireRate = CurrentRateThreshold();
     }
 
     protected virtual void Attack()
@@ -184,7 +188,16 @@ public class Dice : MonoBehaviour
     {
         isCrit = false;
 
-        if (Random.Range(0, 100) < 5)
+        var chance = 5;
+        if (IncreaseStage > 0)
+        {
+            chance *= IncreaseStage;
+            if (IncreaseStage == 5)
+            {
+                chance = 100;
+            }
+        }
+        if (Random.Range(0, 100) < chance)
         {
             damage += damage * (int)((float)user.crit * 0.01f);
             isCrit = true;

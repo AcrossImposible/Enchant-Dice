@@ -16,8 +16,6 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
         player = GetComponent<Player>();
 
-        player.onDiceSpawned += Dice_Spawned;
-
         EventsHolder.onDiceMerged.AddListener(Dice_Merged);
         EventsHolder.onDiceDestroyed.AddListener(Dice_Destroyed);
         
@@ -26,11 +24,15 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
             var playerPos = GameManager.Instance.spawnPoints[1].position;
             transform.position = playerPos;
 
-            photonView.RegisterMethod<IntIntOwnerNetworkData>(EventCode.DiceSpawned, SpawnDice_Received);
+            photonView.RegisterMethod<IntIntIntOwnerNetworkData>(EventCode.DiceSpawned, SpawnDice_Received);
             photonView.RegisterMethod<IntOwnerNetworkData>(EventCode.DiceDestroyed, DiceDestroy_Received);
             photonView.RegisterMethod<IntIntOwnerNetworkData>(EventCode.DiceMerged, DiceMerge_Received);
             photonView.RegisterMethod<IntIntOwnerNetworkData>(EventCode.UserData, UserData_Received);
             photonView.RegisterMethod<IntOwnerNetworkData>(EventCode.UserCrit, UserCrit_Received);
+        }
+        else
+        {
+            player.onDiceSpawned += Dice_Spawned;
         }
 
         SendUserData();
@@ -67,10 +69,22 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
     private void DiceDestroy_Received(IntOwnerNetworkData data)
     {
-        if(data.viewID == photonView.ViewID)
+        if (data.viewID == photonView.ViewID)
         {
             player.allDices.RemoveAll(d => !d);
-            var dice = player.allDices.Find(d => d.Cell.Idx == data.value);
+
+            print(player.team);
+
+            var dice = player.allDices.Find
+            (
+                d =>
+                {
+                    //print(d);
+                    //print(d.Cell);
+                    //print(data.value);
+                    return d.Cell.Idx == data.value; 
+                }
+            );
             dice.Cell.IsEmpty = true;
             Destroy(dice.gameObject);
         }
@@ -121,22 +135,23 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
         }
     }
 
-    private void SpawnDice_Received(IntIntOwnerNetworkData data)
+    private void SpawnDice_Received(IntIntIntOwnerNetworkData data)
     {
-        if(photonView.ViewID == data.viewID)
+        if (photonView.ViewID == data.viewID)
         {
             var cell = player.GetCell(data.value_2);
             var prefab = player.Prefabs[data.value_1];
-            player.SpawnDice(prefab, cell);
+            player.SpawnDice(prefab, cell, data.value_3);
         }
     }
 
     private void Dice_Spawned(Dice dice)
     {
-        IntIntOwnerNetworkData data = new() 
+        IntIntIntOwnerNetworkData data = new() 
         { 
             value_1 = dice.idxInInventory, 
             value_2 = dice.Cell.Idx,
+            value_3 = dice.Stage,
             viewID = photonView.ViewID 
         };
         

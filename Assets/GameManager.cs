@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public List<RespawnData> respawnQueue = new();
     public List<Enemy> allEnemies = new();
 
+    public Player minePlayer;
+
     public bool complete;
     public bool spawning;
 
@@ -53,11 +55,17 @@ public class GameManager : MonoBehaviour
         multiplayer.onPlayerSpawned += Player_Spawned;
 
         Application.targetFrameRate = 60;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         EventsHolder.onEnemyAnniged.AddListener(Enemy_Anniged);
+        EventsHolder.playerSpawnedAny.AddListener(AnyPlayer_Spawned);
     }
 
-    
+    private void AnyPlayer_Spawned(Player player)
+    {
+        allPlayers.Add(player);
+    }
+
     private void Start()
     {
         SpawnEnemies();
@@ -147,6 +155,7 @@ public class GameManager : MonoBehaviour
     {
         var p = player.GetComponent<Player>();
         EventsHolder.playerSpawnedMine?.Invoke(p);
+        minePlayer = p;
     }
 
     private void SetCameraSize()

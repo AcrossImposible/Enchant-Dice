@@ -54,9 +54,10 @@ public class PlayerInput : MonoBehaviour
 
         if (hit)
         {
-            dice = hit.collider.GetComponent<Dice>();
-            if (dice)
+            var hitDice = hit.collider.GetComponent<Dice>();
+            if (hitDice && hitDice.Team != Team.Other)
             {
+                dice = hitDice;
                 if (splittingMode)
                 {
                     EventsHolder.onDiceToSplitClicked?.Invoke(dice);

@@ -93,6 +93,9 @@ public class DiceInfo : MonoBehaviour
             case "Ice":
                 return "Лед";
 
+            case "Random Grow":
+                return "Случайный Рост";
+
             //case "Energy":
             //    return "железо";
 
@@ -134,6 +137,9 @@ public class DiceInfo : MonoBehaviour
 
             case "Attacks the first undefeated enemy. When attacking, it puts poisoning on the monster, causing damage to it every second.":
                 return "Атакует первого неотравленного врага. При атаке накладывает на монстра отравление, ежесекундно наносящее ему урон.";
+
+            case "This dice creates a random dice with a random number of dots 18 seconds after it appears.":
+                return "Этот кубик через 18 секунд после появления,  создает случайный кубик со случайным количеством точек";
 
             default:
                 return string.Empty;

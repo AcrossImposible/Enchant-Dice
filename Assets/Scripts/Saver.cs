@@ -41,6 +41,7 @@ public class Saver : MonoBehaviour
         data.inventory = User.Data.inventory;
         data.exp = User.Data.exp;
         data.lvl = User.Data.lvl;
+        data.maxWave = User.Data.maxWave;
         YG.YandexGame.savesData = data;
     }
 
@@ -53,6 +54,7 @@ public class Saver : MonoBehaviour
         User.Data.lvl = data.lvl;
         User.Data.exp = data.exp;
         User.Data.golda = data.money;
+        User.Data.maxWave = data.maxWave;
 
         if (data.deck != null)
         {

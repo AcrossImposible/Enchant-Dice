@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System;
@@ -14,6 +15,7 @@ public class PanelDeck : MonoBehaviour
     [SerializeField] Transform deckParent;
     [SerializeField] DiceInfo diceInfo;
     [SerializeField] TMP_Text labelCrit;
+    [SerializeField] ScrollRect scroll;
     
     List<Dice> allDices;
     List<InventoryDice> dicesDeck = new();
@@ -98,6 +100,8 @@ public class PanelDeck : MonoBehaviour
         labelCrit.text = $"{txt} {User.Data.crit}%";
     }
 
+    Canvas movedCanvas;
+
     private void Update()
     {
         List<RaycastResult> hits = new();
@@ -112,9 +116,13 @@ public class PanelDeck : MonoBehaviour
                 foreach (var item in hits)
                 {
                     var dice = item.gameObject.GetComponent<InventoryDice>();
-                    if (dice && !dice.transform.parent.parent.GetComponent<Deck>())
+                    if (dice && !dice.transform.parent.parent.GetComponent<Deck>() && dice.inited)
                     {
                         movedDice = dice;
+                        movedCanvas = movedDice.gameObject.AddComponent<Canvas>();
+                        movedCanvas.overrideSorting = true;
+                        movedCanvas.sortingOrder = 10;
+                        scroll.enabled = false;
                     }
                 }
             }
@@ -131,10 +139,14 @@ public class PanelDeck : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            scroll.enabled = true;
+
             if (!movedDice)
                 return;
 
-            if(timeMoveDice < 0.3f)
+            DestroyImmediate(movedCanvas);
+
+            if (timeMoveDice < 0.3f)
             {
                 diceInfo.Init(allDices.Find(d => d.Color == movedDice.Color));
                 DiceMoveBack(movedDice);
@@ -210,8 +222,10 @@ public class PanelDeck : MonoBehaviour
                     break;
                 }
             }
+
             DiceMoveBack(movedDice);
             movedDice = null;
+            
         }
     }
 

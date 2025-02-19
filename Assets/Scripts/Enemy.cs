@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         int koef = GameManager.Instance.IsPVP ? 50 : 10;
         var bonusByNumber = koef * (number / 10);
 
-        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.8f;
+        float powerValue = GameManager.Instance.IsPVP ? 5.0f : 2.5f;
         var bonusByWave = 10 * (int)Mathf.Pow(GameManager.Instance.Wave, powerValue);
 
         return baseHP + bonusByNumber + bonusByWave;
@@ -68,7 +68,8 @@ public class Enemy : MonoBehaviour
 
     void SpawnPowerStone()
     {
-        Instantiate(powerStonePrefab, transform.position, Quaternion.identity);
+        var pos = transform.position + (Vector3.back * 8) + (Vector3.up * 0.5f);
+        Instantiate(powerStonePrefab, pos, Quaternion.identity);
     }
 
     private void Update()

@@ -499,7 +499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6139162048053085886, guid: e4518c17bff41474bbf8c3db9d58e8d7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -600,6 +600,7 @@ MonoBehaviour:
   allPlayers: []
   respawnQueue: []
   allEnemies: []
+  minePlayer: {fileID: 0}
   complete: 0
   spawning: 0
 --- !u!114 &1099483211
@@ -1096,6 +1097,10 @@ PrefabInstance:
     - target: {fileID: 3869693768731499564, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
       propertyPath: m_Name
       value: UI Landscape
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869693768731499564, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,6 +14,7 @@ public class WebGLInputList : MonoBehaviour
 
     void Update()
     {
+#if UNITY_WEBGL
         for (int i = 0; i < inputFields.Length; i++)
         {
             // Check if the current input field is focused and the keyboard is not already open
@@ -29,5 +30,6 @@ public class WebGLInputList : MonoBehaviour
                 inputFields[i].text = keyboards[i].text;
             }
         }
+#endif
     }
 }

@@ -8,17 +8,28 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] Menu menuPortrait;
     [SerializeField] Menu menuLandscape;
 
+    public Menu ActiveMenu { get; private set; }
+
+    public static MenuStarter Single;
+
     private void Awake()
     {
-        if(Screen.height > Screen.width)
+        Single = this;
+
+        if (Screen.height > Screen.width)
         {
-            menuPortrait.Init();
             menuLandscape.gameObject.SetActive(false);
+            menuPortrait.gameObject.SetActive(true);
+
+            menuPortrait.Init();
+            ActiveMenu = menuPortrait;
         }
         else
         {
-            menuLandscape.Init();
             menuPortrait.gameObject.SetActive(false);
+            menuLandscape.gameObject.SetActive(true);
+            menuLandscape.Init();
+            ActiveMenu = menuLandscape;
         }
     }
 }

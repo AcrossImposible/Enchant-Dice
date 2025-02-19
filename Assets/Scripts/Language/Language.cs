@@ -3,7 +3,13 @@ using TMPro;
 
 public class Language
 {
-	public static bool Rus => Application.systemLanguage == SystemLanguage.Russian;
+	public static bool Rus
+		=>
+#if UNITY_WEBGL
+		YG.YandexGame.lang == "ru";
+#else
+		Application.systemLanguage == SystemLanguage.Russian;
+#endif
 
 	public static void SetLanguage(TextMeshProUGUI text)
 	{

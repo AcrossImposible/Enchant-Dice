@@ -1,12 +1,12 @@
 {
-  "idSave": 2,
+  "idSave": 86,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
-  "money": 1,
-  "newPlayerName": "Игрок",
-  "countCards": 3,
-  "countStones": 100,
+  "money": 644,
+  "newPlayerName": "Игрок Восэм",
+  "countCards": 36,
+  "countStones": 113,
   "tutorCompleted": true,
   "deck": [
     {
@@ -25,7 +25,7 @@
       "lvl": 1
     },
     {
-      "idx": 3,
+      "idx": 9,
       "count": 0,
       "lvl": 1
     },
@@ -38,31 +38,57 @@
   "inventory": [
     {
       "idx": 0,
-      "count": 0,
+      "count": 20,
       "lvl": 1
     },
     {
       "idx": 1,
-      "count": 0,
+      "count": 14,
       "lvl": 1
     },
     {
       "idx": 2,
-      "count": 0,
+      "count": 16,
       "lvl": 1
     },
     {
       "idx": 3,
-      "count": 0,
+      "count": 11,
       "lvl": 1
     },
     {
       "idx": 4,
-      "count": 0,
+      "count": 18,
+      "lvl": 1
+    },
+    {
+      "idx": 8,
+      "count": 18,
+      "lvl": 1
+    },
+    {
+      "idx": 5,
+      "count": 18,
+      "lvl": 1
+    },
+    {
+      "idx": 7,
+      "count": 22,
+      "lvl": 1
+    },
+    {
+      "idx": 6,
+      "count": 20,
+      "lvl": 1
+    },
+    {
+      "idx": 9,
+      "count": 2,
       "lvl": 1
     }
   ],
   "exp": 0,
   "lvl": 1,
+  "maxWave": 0,
   "openLevels": null
 }

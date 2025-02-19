@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialPlayer : Player
 {
-    public override Dice SpawnDice(Cell cell = null)
+    public override Dice SpawnDice(Cell cell = null, int stage = 0)
     {
         if (!cell)
         {
@@ -33,7 +33,7 @@ public class TutorialPlayer : Player
         
 
         var dice = Instantiate(randomDice, cell.transform.position + Vector3.back, Quaternion.identity);
-        dice.Init(user, team, 0);
+        dice.Init(user, team, stage);
         dice.Cell = cell;
 
         cell.IsEmpty = false;

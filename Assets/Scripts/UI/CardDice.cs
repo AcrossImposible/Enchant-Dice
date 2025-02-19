@@ -25,7 +25,22 @@ public class CardDice : MonoBehaviour
         btnUpgrade.gameObject.SetActive(false);
         panelPriceUpgrade.gameObject.SetActive(false);
 
+        btnUpgrade.onClick.RemoveAllListeners();
         btnUpgrade.onClick.AddListener(BtnUpgrade_Clicked);
+
+        
+        StartCoroutine(Delay());
+
+        IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(0.1f);
+
+            if (dice != null)
+            {
+                UpdateView();
+            }
+
+        }
     }
 
     public void Init(User.Dice dice, Dice dicePrefab)
@@ -36,7 +51,7 @@ public class CardDice : MonoBehaviour
 
         inventoryDice.Init(dicePrefab);
 
-        panelLock.SetActive(false);        
+        panelLock.SetActive(false);
     }
 
     private void BtnUpgrade_Clicked()
@@ -61,7 +76,7 @@ public class CardDice : MonoBehaviour
         Saver.ConvertToYG();
         YG.YandexGame.SaveProgress();
 #endif
-    }
+    } 
 
 
     void UpdateView()

@@ -62,7 +62,9 @@ public class Player : MonoBehaviour
                     user = CreateRandomBotProfile();
             }
         }
-        
+
+        EventsHolder.playerSpawnedAny?.Invoke(this);
+
         EventsHolder.onEnemyAnniged.AddListener(Enemy_Anniged);
         EventsHolder.onEnemySkiped.AddListener(Enemy_Skiped);
 
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
         SpawnDice();
     }
 
-    public virtual Dice SpawnDice(Cell cell = null)
+    public virtual Dice SpawnDice(Cell cell = null, int stage = 0)
     {
         if (!cell)
         {
@@ -117,7 +119,7 @@ public class Player : MonoBehaviour
         var randomDice = dicesPrefab[idx];
 
         var dice = Instantiate(randomDice, cell.transform.position + Vector3.back, Quaternion.identity);
-        dice.Init(user, team, 0);
+        dice.Init(user, team, stage);
         dice.Cell = cell;
 
         cell.IsEmpty = false;
@@ -138,12 +140,12 @@ public class Player : MonoBehaviour
         return SpawnDice(prefab, cell);
     }
 
-    public virtual Dice SpawnDice(Dice prefab, Cell cell)
+    public virtual Dice SpawnDice(Dice prefab, Cell cell, int stage = 0)
     {
         var randomDice = prefab;
 
         var dice = Instantiate(randomDice, cell.transform.position + Vector3.back, Quaternion.identity);
-        dice.Init(user, team, 0);
+        dice.Init(user, team, stage);
         dice.Cell = cell;
 
         cell.IsEmpty = false;

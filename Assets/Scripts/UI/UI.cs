@@ -24,6 +24,7 @@ public class UI : MonoBehaviour
     [SerializeField] TMP_Text labelResult;
     [SerializeField] TMP_Text labelCountWaves;
     [SerializeField] TMP_Text labelCountCards;
+    [SerializeField] TMP_Text labelNewMaxWave;
     [SerializeField] public TMP_Text labelCountPoints;
     [SerializeField] public TMP_Text labelCountPowerStones;
     [SerializeField] TMP_Text labelGolda;
@@ -62,6 +63,7 @@ public class UI : MonoBehaviour
 
         ShowPanelWave();
 
+        btnSplitting.gameObject.SetActive(true);
         panelComplete.SetActive(false);
         panelSplittingTooltip.SetActive(false);
         panelConfirmSplitting.SetActive(false);
@@ -84,6 +86,21 @@ public class UI : MonoBehaviour
             "Куриная нога",
             "Твой бывший",
         };
+
+        if (!Language.Rus)
+        {
+            names = new[]
+            {
+                "Cliford",
+                "Toilet",
+                "Jimmy",
+                "Big USA",
+                "Corean Trash",
+                "Crocodile Moss",
+                "Junckyard",
+                "Chicken Buscket",
+            };
+        }
 
         return names[UnityEngine.Random.Range(0, names.Length)];
     }
@@ -163,7 +180,7 @@ public class UI : MonoBehaviour
 
         if (Photon.Pun.PhotonNetwork.CurrentRoom == null)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menuha");
 
         }
         else
@@ -228,13 +245,13 @@ public class UI : MonoBehaviour
                 labelGolda.text = $"{txtGolda} +{waves * 10}";
                 labelExp.text = $"{txtExp} +{8 + waves}";
 
-                if(User.Data.exp >= User.Data.ExpToNextLvl)
+                if (User.Data.exp >= User.Data.ExpToNextLvl)
                 {
                     User.Data.exp -= User.Data.ExpToNextLvl;
                     User.Data.lvl++;
                 }
             }
-                       
+
         }
         else
         {
@@ -245,6 +262,20 @@ public class UI : MonoBehaviour
             labelCountCards.text = $"{txtCardReceived} {waves}";
 
             User.Data.countCards += waves;
+
+            if (User.Data.maxWave < waves)
+            {
+                User.Data.maxWave = waves;
+                labelNewMaxWave.text = Language.Rus ? $"Новый Рекорд {waves} !" : $"New Record {waves} !";
+#if UNITY_WEBGL
+                YG.YandexGame.NewLeaderboardScores("wave", waves);
+#endif
+                Saver.Save();
+            }
+            else
+            {
+                labelNewMaxWave.text = string.Empty;
+            }
         }
 
 #if UNITY_ANDROID

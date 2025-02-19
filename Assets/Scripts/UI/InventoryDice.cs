@@ -16,7 +16,8 @@ public class InventoryDice : MonoBehaviour
     [field: SerializeField]
     public Color Color { get; private set; }
     public RectTransform TransformUI => rectTransform;
-    
+
+    public bool inited;
 
     public void Init(Dice dice)
     {
@@ -38,6 +39,8 @@ public class InventoryDice : MonoBehaviour
         icon.color = dice.icon.color;
 
         labelIncrease.gameObject.SetActive(false);
+
+        inited = true;
     }
 
     public void UpdateIncreaseView(int increaseStage)
