@@ -280,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3869693768731499564, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
       propertyPath: m_Name
-      value: UI Landscape Variant
+      value: UI Landscape
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -605,6 +605,7 @@ MonoBehaviour:
   allPlayers: []
   respawnQueue: []
   allEnemies: []
+  minePlayer: {fileID: 0}
   complete: 0
   spawning: 0
 --- !u!114 &1099483211

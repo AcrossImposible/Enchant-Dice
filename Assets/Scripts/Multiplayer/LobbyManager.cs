@@ -49,7 +49,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
 
         //PhotonNetwork.AuthValues = new AuthenticationValues(PhotonNetwork.NickName);
-        if (!PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.IsConnectedAndReady)
         {
             PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.GameVersion = "1";

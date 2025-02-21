@@ -86,7 +86,7 @@ public class Menu : MonoBehaviour
                 inputNickname.text = YG.YandexGame.savesData?.newPlayerName;
             }
 #endif
-            labelMaxWave.text = Language.Rus ? $"Максимально прожито волн {User.Data.maxWave}" : $"Max surved waves {User.Data.maxWave}";
+            labelMaxWave.text = Language.Rus ? $"Максимально прожито волн в кооперативе {User.Data.maxWave}" : $"Max surved waves in cooperative {User.Data.maxWave}";
         }
 
         tutorReset.onClick.AddListener(() => 
