@@ -46,6 +46,12 @@ public class Advertising : MonoBehaviour
 
 #endif
         }
+#if UNITY_WEBGL
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Tutor Epta")
+        {
+            YG.YandexGame.FullscreenShow();
+        }
+#endif
     }
 
     public void onRewardedVideoLoaded(bool precache)

@@ -104,7 +104,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
-        print("нажал");
+        //print("нажал");
         btnLabel = btnConnect.GetComponentInChildren<TMP_Text>();
         btnLabel.text = Language.Rus ? "Поиск игры.." : "Game searching..";
 

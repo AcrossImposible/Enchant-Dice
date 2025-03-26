@@ -201,7 +201,7 @@ public class Tutor : MonoBehaviour
                     return "Hi!\nLet me show you how to play.\n\n\nTo start, click on the green button to create a dice";
 
                 case 1:
-                    return "Great!\n\nBattle points are spent on creating a dice -BP.Create more dices.\n\nYou will get battle points for every enemy killed.";
+                    return "Great!\n\nBattle points are spent on creating a dice -BP.Create more dices.\n\nYou will get battle points for every enemy destroyed.";
 
                 case 2:
                     return "To the left of the green button, your current number of battle points is displayed.\n\nNow let's improve your dice. Click on the red dice and connect it with the same dice.";

@@ -90,11 +90,13 @@ public class CardDice : MonoBehaviour
         {
             btnUpgrade.gameObject.SetActive(true);
             panelPriceUpgrade.gameObject.SetActive(true);
+            labelCount.gameObject.SetActive(false);
         }
         else
         {
             btnUpgrade.gameObject.SetActive(false);
             panelPriceUpgrade.gameObject.SetActive(false);
+            labelCount.gameObject.SetActive(true);
         }
     }
 }

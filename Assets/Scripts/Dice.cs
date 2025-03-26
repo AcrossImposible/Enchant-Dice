@@ -33,6 +33,7 @@ public class Dice : MonoBehaviour
 
     public Color Color => color;
     public int Stage { get; set; } = 0;
+    [field:SerializeField]
     public int IncreaseStage { get; set; } = 0;
     public Cell Cell { get; set; }
     public Team Team => team;

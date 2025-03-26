@@ -6,7 +6,7 @@ public static class Settings
 {
     public const int MAX_STAGE = 5;
     public const int MAX_PLAYERS = 10;
-    public const int MAX_PERKS = 5;
+    public const int MAX_INCREASE_STAGE = 5;
     public const int MIN_RUNE_SPAWN_DELAY = 100;
     public const int MAX_RUNE_SPAWN_DELAY = 170;
     public const int RUNE_DURATION = 30;

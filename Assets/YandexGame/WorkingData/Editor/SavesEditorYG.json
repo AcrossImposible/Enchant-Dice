@@ -1,12 +1,12 @@
 {
-  "idSave": 113,
+  "idSave": 125,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
   "money": 274,
   "newPlayerName": "Jiza",
-  "countCards": 36,
-  "countStones": 114,
+  "countCards": 46,
+  "countStones": 140,
   "tutorCompleted": true,
   "deck": [
     {
@@ -89,6 +89,6 @@
   ],
   "exp": 9,
   "lvl": 1,
-  "maxWave": 0,
+  "maxWave": 10,
   "openLevels": null
 }

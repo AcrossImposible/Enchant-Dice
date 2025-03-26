@@ -75,22 +75,45 @@ public class AIBehaviour : MonoBehaviour
         if (actionTimer < 3)
             return;
 
+       
         foreach (var dice in player.allDices)
         {
             if (!dice || dice.Stage < MAX_STAGE || dice.IncreaseStage > 0)
                 continue;
 
-            var otherDice = player.allDices.Find(d => d && d != dice && d.Stage == dice.Stage && dice.Color == d.Color);
+            var otherDice = player.allDices.Find(d => d && d != dice && d.Stage == dice.Stage && dice.Color == d.Color && d.IncreaseStage == 0);
             if (otherDice)
             {
                 otherDice.Increase();
                 dice.Cell.IsEmpty = true;
                 Destroy(dice.gameObject);
-
                 actionTimer = 0;
+
                 return;
             }
 
+        }
+
+        foreach (var dice in player.allDices)
+        {
+            if (!dice || dice.IncreaseStage == 0 || dice.IncreaseStage >= MAX_INCREASE_STAGE)
+                continue;
+
+            var countRequiredItems = 10 * (int)Mathf.Pow(dice.IncreaseStage, 1.57f);
+
+            if (player.user.countStones < countRequiredItems)
+                return;
+
+            var chanceIncrese = 15 / dice.IncreaseStage;
+            player.user.countStones -= countRequiredItems;
+
+            if (Random.Range(0, 100) < chanceIncrese)
+            {
+                
+                dice.Increase();
+                actionTimer = 0;
+                return;
+            }
         }
     }
 
@@ -102,7 +125,12 @@ public class AIBehaviour : MonoBehaviour
         // HOT FIX
         if (!player.GetCell())
         {
+            player.user.countStones += 1;
             var toDestroy = player.allDices.Find(d => d.Stage == 0);
+            if(!toDestroy || toDestroy is RandomGrow)
+            {
+                return;
+            }
             toDestroy.Cell.IsEmpty = true;
             Destroy(toDestroy.gameObject);
             actionTimer = -1;
