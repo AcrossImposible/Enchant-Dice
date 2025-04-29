@@ -96,6 +96,9 @@ public class DiceInfo : MonoBehaviour
             case "Random Grow":
                 return "Случайный Рост";
 
+            case "Victim":
+                return "Жертва";
+
             //case "Energy":
             //    return "железо";
 
@@ -140,6 +143,9 @@ public class DiceInfo : MonoBehaviour
 
             case "This dice creates a random dice with a random number of dots 18 seconds after it appears.":
                 return "Этот кубик через 18 секунд после появления,  создает случайный кубик со случайным количеством точек";
+
+            case "Attacks the first enemy. This cube gives you a fixed number of points when combined with another Sacrificial Cube, Food, or Chameleon. For each point on the die during the combination, the player gets 80 points.":
+                return "Атакует первого врага. Этот кубик даёт фиксированное количество очков при объединении с другим Жертвенным кубиком, Питанием или Хамелеоном. За каждую точку на кубике во время объединения игрок получает 80 очков.";
 
             default:
                 return string.Empty;

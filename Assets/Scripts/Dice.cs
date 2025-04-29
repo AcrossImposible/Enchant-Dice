@@ -9,6 +9,7 @@ public class Dice : MonoBehaviour
     [SerializeField] Color color;
     [SerializeField] public int baseDamage = 5;
     [SerializeField] public float fireRate = 0.5f;
+    [SerializeField] AnimationCurve waveDisolveCurve;
 
     [Space]
 
@@ -42,6 +43,8 @@ public class Dice : MonoBehaviour
     protected Enemy target;
     protected User user;
 
+    Transform gunWavePrefab;
+
     bool stopAtack;
     float currentRate;
     int idxFireableGun;
@@ -73,6 +76,35 @@ public class Dice : MonoBehaviour
         //print(idxInInventory);
         //print(user.inventory.Find(d => d.idx == idxInInventory));
         baseDamage += user.inventory.Find(d => d.idx == idxInInventory).lvl * stepDamage;
+
+        gunWavePrefab = Resources.Load<Transform>("Gun Wave");
+
+        if(waveDisolveCurve.keys.Length == 0)
+        {
+            waveDisolveCurve.AddKey(new() 
+            { 
+                time = 0,
+                value = 0,
+                inTangent = 4.3f,
+                outTangent = 4.3f
+            });
+
+            waveDisolveCurve.AddKey(new()
+            {
+                time = 0.2f,
+                value = 0.6f,
+                inTangent = 0.9f,
+                outTangent = 0.9f
+            });
+
+            waveDisolveCurve.AddKey(new()
+            {
+                time = 1f,
+                value = 1f,
+                inTangent = 0f,
+                outTangent = 0f
+            });
+        }
     }
 
     public void AddDots()
@@ -148,7 +180,8 @@ public class Dice : MonoBehaviour
 
         if (target)
         {
-            var pos = stages[Stage].transform.GetChild(idxFireableGun).position;
+            var gunpoint = stages[Stage].transform.GetChild(idxFireableGun);
+            var pos = gunpoint.position;
             pos.z = -70;
             var projectile = Instantiate(projectilePrefab, pos, Quaternion.identity);
             InitProjectile(projectile);
@@ -161,6 +194,48 @@ public class Dice : MonoBehaviour
             currentRate = 0;
 
             target = null;
+
+            if (IncreaseStage == 0)
+            {
+                var wave = Instantiate(gunWavePrefab, pos, Quaternion.identity);
+                var renderer = wave.GetComponent<SpriteRenderer>();
+                renderer.color = color;
+
+                wave.LeanScale(Vector3.one * 1.3f, 0.18f).setEaseOutQuad();
+
+                LeanTween.value(gameObject, a =>
+                {
+                    var c = renderer.color;
+                    c.a = a;
+                    renderer.color = c;
+                }, 1f, 0, 0.19f).setEaseOutQuad();
+
+                //LeanTween.value(gameObject, a =>
+                //{
+                //    var c = renderer.color;
+                //    c.a = waveDisolveCurve.Evaluate(a);
+                //    renderer.color = c;
+                //}, 1f, 0, 0.19f);
+
+                var sequence = LeanTween.sequence();
+
+                sequence.append(gunpoint.LeanScale(Vector3.one * 0.7f, 0.1f).setEaseOutQuad());// .setEaseSpring();
+                sequence.append(gunpoint.LeanScale(Vector3.one * 1.0f, 0.1f).setEaseOutQuad());// .setEaseSpring();
+                sequence.append(() => Destroy(wave.gameObject));
+            }
+            else
+            {
+                var sequence = LeanTween.sequence();
+                
+                sequence.append(labelIncrese.transform.LeanScale(Vector3.one * 1.15f, 0.058f).setEaseOutQuad());// .setEaseSpring();
+                sequence.append(labelIncrese.transform.LeanScale(Vector3.one * 1f, 0.078f).setEaseOutQuad());// .setEaseSpring();
+
+                var borderSeq = LeanTween.sequence();
+
+                borderSeq.append(border.transform.LeanScale(Vector3.one * 0.85f, 0.058f).setEaseOutQuad());// .setEaseSpring();
+                borderSeq.append(border.transform.LeanScale(Vector3.one * 1f, 0.078f).setEaseOutQuad());// .setEaseSpring();
+
+            }
         }
         else
         {

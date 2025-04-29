@@ -56,6 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   labelCount: {fileID: 8890672882293538788}
   dice: {fileID: 2344030736466655115}
+  goldLabel: {fileID: 6744580656998033704}
 --- !u!222 &3476236478774068380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -314,6 +315,7 @@ GameObject:
   - component: {fileID: 4086046252319314228}
   - component: {fileID: 8990732600358504179}
   - component: {fileID: 6820574196657348681}
+  - component: {fileID: 4195521962494230246}
   m_Layer: 5
   m_Name: Label Gold
   m_TagString: Untagged
@@ -437,6 +439,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4195521962494230246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744580656998033704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac6b9eeeb27cc24aa3b0899c6379b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: "\u0417\u043E\u043B\u043E\u0442\u043E"
 --- !u!1001 &2741807265335689901
 PrefabInstance:
   m_ObjectHideFlags: 0

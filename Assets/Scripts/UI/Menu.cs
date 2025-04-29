@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using static Settings;
+using YG.Utils.LB;
 
 public class Menu : MonoBehaviour
 {
@@ -53,8 +54,10 @@ public class Menu : MonoBehaviour
         Saver.Load();
         loaded = true;
 #endif
+
 #if UNITY_WEBGL
         YG.YandexGame.GetDataEvent += Data_Geted;
+        YG.YandexGame.onGetLeaderboard += LB_geted;
 #endif
         inputNickname.onValueChanged.AddListener(Nickname_Changed);
         inputNickname.onSubmit.AddListener(Nickname_Submited);
@@ -86,7 +89,8 @@ public class Menu : MonoBehaviour
                 inputNickname.text = YG.YandexGame.savesData?.newPlayerName;
             }
 #endif
-            labelMaxWave.text = Language.Rus ? $"Максимально прожито волн в кооперативе {User.Data.maxWave}" : $"Max surved waves in cooperative {User.Data.maxWave}";
+
+            UpdateMaxWaveUIView();
         }
 
         tutorReset.onClick.AddListener(() => 
@@ -112,6 +116,8 @@ public class Menu : MonoBehaviour
         UpdateUI();
 
     }
+
+    
 
     private void Nickname_Submited(string value)
     {
@@ -159,9 +165,10 @@ public class Menu : MonoBehaviour
 
         Photon.Pun.PhotonNetwork.NickName = data.newPlayerName;
 #endif
+        YG.YandexGame.GetLeaderboard("wave", 20, 3, 6, "nonePhoto");
         loaded = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menuha");
-        print($"Данные загружены");
+        print($"Данные загружены {data.maxWave} ===");
     }
 
     void UpdateUI()
@@ -247,6 +254,11 @@ public class Menu : MonoBehaviour
         }
     }
 
+    void UpdateMaxWaveUIView()
+    {
+        labelMaxWave.text = Language.Rus ? $"Максимально прожито волн в кооперативе {User.Data.maxWave}" : $"Max surved waves in cooperative {User.Data.maxWave}";
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR
@@ -288,10 +300,34 @@ public class Menu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             PlayerPrefs.DeleteAll();
 
+        if (Input.GetKeyDown(KeyCode.B))
+            YG.YandexGame.GetLeaderboard("wave", 20, 3, 6, "nonePhoto");
+
         string txt = Language.Rus ? "Уровень" : "LvL";
         labelExp.text = $"{txt} {User.Data.lvl} ({User.Data.exp}/{User.Data.ExpToNextLvl})";
         txt = Language.Rus ? "Золото" : "Gold";
         labelGold.text = $"{txt} {User.Data.golda}";
+    }
+
+    private void LB_geted(LBData obj)
+    {
+        if (obj == null || obj.thisPlayer == null)
+            return;
+
+        print($"Запись в лдиерборде {obj.thisPlayer.score}");
+        if (User.Data.maxWave < obj.thisPlayer.score)
+        {
+            User.Data.maxWave = obj.thisPlayer.score;
+            Saver.Save();
+
+            UpdateMaxWaveUIView();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        YG.YandexGame.GetDataEvent -= Data_Geted;
+        YG.YandexGame.onGetLeaderboard -= LB_geted;
     }
 
     private void BtnEbash_Clicked()

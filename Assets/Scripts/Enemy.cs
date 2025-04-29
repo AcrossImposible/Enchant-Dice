@@ -6,6 +6,8 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] TMP_Text labelHP;
+    [SerializeField] SpriteRenderer damageEffect;
+    [SerializeField] float effectTransparency = 0.5f;
 
     [field: SerializeField]
     public float Speed { get; set; }
@@ -38,6 +40,10 @@ public class Enemy : MonoBehaviour
         reward += 10 * (GameManager.Instance.Wave / 5);
 
         currentHP = CalculateHP(number);
+
+        var c = Color.white;
+        c.a = 0;
+        damageEffect.color = c;
     }
 
     protected virtual int CalculateHP(int number)
@@ -63,6 +69,29 @@ public class Enemy : MonoBehaviour
             {
                 SpawnPowerStone();
             }
+        }
+
+        if (damageEffect)
+        {
+            var sequence = LeanTween.sequence();
+            sequence.append(LeanTween.value(gameObject, a =>
+            {
+                if (gameObject)
+                {
+                    var c = Color.white;
+                    c.a = a;
+                    damageEffect.color = c;
+                }
+            }, 0, effectTransparency, 0.1f).setEaseOutQuad());
+            sequence.append(LeanTween.value(gameObject, a =>
+            {
+                if (gameObject)
+                {
+                    var c = Color.white;
+                    c.a = a;
+                    damageEffect.color = c;
+                }
+            }, effectTransparency, 0, 0.1f).setEaseOutQuad());
         }
     }
 

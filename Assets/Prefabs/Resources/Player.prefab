@@ -284,6 +284,7 @@ MonoBehaviour:
   - {fileID: 6165432775719588350, guid: b275b5aae60bd6e4abca5c95df68d23d, type: 3}
   - {fileID: 4261554570971905992, guid: 9cc6d6a152fdc584796c06f0f36a8862, type: 3}
   - {fileID: 1673176530906792792, guid: f8554d0b48790054ea798c1eeb3c11ca, type: 3}
+  - {fileID: 2850740275053074955, guid: 025950e89a72e8e45af330ae2a197db4, type: 3}
   allDices: []
   user:
     countCards: 0

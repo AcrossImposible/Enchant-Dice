@@ -67,10 +67,22 @@ public class Player : MonoBehaviour
 
         EventsHolder.onEnemyAnniged.AddListener(Enemy_Anniged);
         EventsHolder.onEnemySkiped.AddListener(Enemy_Skiped);
+        EventsHolder.onDiceDestroyed.AddListener(Dice_Destroyed);
 
         user.CalculateCrit();
 
         InitMineDeck();
+    }
+
+    private void Dice_Destroyed(Dice dice)
+    {
+        if (dice is Victim)
+        {
+            if (dice.Team == team)
+            {
+                Coins += 80 * (dice.Stage + 1);
+            }
+        }
     }
 
     void InitMineDeck()
@@ -129,6 +141,9 @@ public class Player : MonoBehaviour
 
         onDiceSpawned?.Invoke(dice);
         EventsHolder.onDiceSpawned?.Invoke(dice);
+
+        dice.transform.localScale = Vector3.one * 0.3f;
+        dice.transform.LeanScale(Vector3.one * 0.95f, 0.18f).setEaseOutQuad();
 
         return dice;
     }

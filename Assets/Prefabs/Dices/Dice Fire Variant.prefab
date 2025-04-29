@@ -5,7 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 362380617236002545, guid: 312f145242329d24f99773a44750c0da, type: 3}
@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3164445790225507489, guid: 312f145242329d24f99773a44750c0da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3871983154818653996, guid: 312f145242329d24f99773a44750c0da, type: 3}
       propertyPath: m_IsActive
@@ -206,7 +206,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5272269015784185251, guid: 312f145242329d24f99773a44750c0da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 479038948301914146}
   m_SourcePrefab: {fileID: 100100000, guid: 312f145242329d24f99773a44750c0da, type: 3}
 --- !u!1 &521945327616631324 stripped
 GameObject:
@@ -269,6 +274,12 @@ MonoBehaviour:
   color: {r: 0.84313726, g: 0.1254902, b: 0.1254902, a: 1}
   baseDamage: 3
   fireRate: 0.8
+  waveDisolveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   stepDamage: 1
   stepFireRate: 0.03
   stages:
@@ -285,6 +296,8 @@ MonoBehaviour:
   title: Fire
   info: Nearby enemies take fire damage across the area.
   idxInInventory: 1
+  finalFireRate: 0
+  <IncreaseStage>k__BackingField: 0
   fireEffectPrefab: {fileID: 4466639702983455676, guid: 255874ffb3970a4448bdadb04c72bb15, type: 3}
   fireDamage: 8
   fireDamageStep: 2

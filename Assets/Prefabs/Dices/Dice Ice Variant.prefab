@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3164445790225507489, guid: 312f145242329d24f99773a44750c0da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5272269015784185251, guid: 312f145242329d24f99773a44750c0da, type: 3}
       propertyPath: m_Name
@@ -181,6 +181,12 @@ MonoBehaviour:
   color: {r: 0.007843138, g: 0.5568628, b: 0.8784314, a: 1}
   baseDamage: 7
   fireRate: 1.38
+  waveDisolveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   stepDamage: 1
   stepFireRate: 0.03
   stages:
@@ -198,6 +204,8 @@ MonoBehaviour:
   info: Attacks the first enemy. When attacking, it freezes the enemy, slowing down
     his movement speed. Freezing is summed up to three times.
   idxInInventory: 4
+  finalFireRate: 0
+  <IncreaseStage>k__BackingField: 0
   icedPrefabs:
   - {fileID: 6252385437201940386, guid: 621c5983fbde624488099a5762665830, type: 3}
   - {fileID: 4156552652867963663, guid: c7f207825f97d424ca74450f36735c8e, type: 3}

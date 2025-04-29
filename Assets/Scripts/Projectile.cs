@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     Enemy target;
     Vector3 dir;
-    float speed = 5;
+    float speed = 3.99f;
     float lifetime;
     int damage;
 
@@ -43,7 +43,8 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        dir.Normalize(); dir *= 5;
+        dir.Normalize(); 
+        dir *= 5.5f;
         transform.position += speed * Time.deltaTime * dir;
 
         if (dir == Vector3.zero)
