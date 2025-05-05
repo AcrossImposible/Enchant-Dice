@@ -78,16 +78,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //print("ща буду подписывать =-=-=-=-=-=-=-=-=-");
         btnConnect.onClick.AddListener(JoinRoom);
         EventsHolder.onBtnPvPClicked.AddListener(BtnPvP_Clicked);
-        //print("вроде подписал =-=-=-=-=-=-=-=-=");
 
-        if (!PhotonNetwork.IsConnected)
+        
+        //if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnectedAndReady)
         {
-            btnConnect.gameObject.SetActive(false);
-            btnPvP.gameObject.SetActive(false);
+            ShowBattleButtons();
         }
         else
         {
-            ShowBattleButtons();
+            HideBattleButtons();
         }
     }
 

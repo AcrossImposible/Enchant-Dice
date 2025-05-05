@@ -230,11 +230,7 @@ public class Dice : MonoBehaviour
                 sequence.append(labelIncrese.transform.LeanScale(Vector3.one * 1.15f, 0.058f).setEaseOutQuad());// .setEaseSpring();
                 sequence.append(labelIncrese.transform.LeanScale(Vector3.one * 1f, 0.078f).setEaseOutQuad());// .setEaseSpring();
 
-                var borderSeq = LeanTween.sequence();
-
-                borderSeq.append(border.transform.LeanScale(Vector3.one * 0.85f, 0.058f).setEaseOutQuad());// .setEaseSpring();
-                borderSeq.append(border.transform.LeanScale(Vector3.one * 1f, 0.078f).setEaseOutQuad());// .setEaseSpring();
-
+                
             }
         }
         else

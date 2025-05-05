@@ -10,16 +10,20 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] GameObject panelEbash;
     [SerializeField] PanelDeck panelDeck;
+    [SerializeField] PanelShop panelShop;
     [SerializeField] GameObject panelChestResult;
     [SerializeField] PanelUpdateGame panelUpdateGame;
 
     [Space]
 
+    [SerializeField] Button btnShop;
+    [SerializeField] Button btnDeck;
     [SerializeField] Button btnEbash;
+
     [SerializeField] public Button btnPVP;
     [SerializeField] public Button btnCoop;
     [SerializeField] public GameObject connectingInfo;
-    [SerializeField] Button btnDeck;
+    
     [SerializeField] Button btnOpenChest;
     [SerializeField] Button btnTutor;
 
@@ -62,13 +66,17 @@ public class Menu : MonoBehaviour
         inputNickname.onValueChanged.AddListener(Nickname_Changed);
         inputNickname.onSubmit.AddListener(Nickname_Submited);
 
+        
+
         panelChestResult.SetActive(false);
         panelDeck.gameObject.SetActive(false);
+        panelShop.gameObject.SetActive(false);
         panelEbash.SetActive(true);
         panelUpdateGame.gameObject.SetActive(false);
 
         btnTutor.gameObject.SetActive(false);
 
+        btnShop.onClick.AddListener(BtnShop_Clicked);
         btnDeck.onClick.AddListener(BtnDeck_Clicked);
         btnEbash.onClick.AddListener(BtnEbash_Clicked);
         btnPVP.onClick.AddListener(BtnPVP_Clicked);
@@ -77,6 +85,8 @@ public class Menu : MonoBehaviour
         //checkGameVersion.versionNotMatch += GameVersion_NotMatched;
         if (loaded)
         {
+            panelShop.Init();
+            panelShop.onUserDataUpdate.AddListener(UserData_Updated);
 #if UNITY_WEBGL
 
             if (YG.YandexGame.savesData != null && string.IsNullOrEmpty(YG.YandexGame.savesData.newPlayerName))
@@ -117,7 +127,10 @@ public class Menu : MonoBehaviour
 
     }
 
-    
+    private void UserData_Updated()
+    {
+        
+    }
 
     private void Nickname_Submited(string value)
     {
@@ -306,7 +319,7 @@ public class Menu : MonoBehaviour
         string txt = Language.Rus ? "Уровень" : "LvL";
         labelExp.text = $"{txt} {User.Data.lvl} ({User.Data.exp}/{User.Data.ExpToNextLvl})";
         txt = Language.Rus ? "Золото" : "Gold";
-        labelGold.text = $"{txt} {User.Data.golda}";
+        labelGold.SetText($"{txt} {User.Data.golda}");
     }
 
     private void LB_geted(LBData obj)
@@ -330,9 +343,17 @@ public class Menu : MonoBehaviour
         YG.YandexGame.onGetLeaderboard -= LB_geted;
     }
 
+    private void BtnShop_Clicked()
+    {
+        panelDeck.gameObject.SetActive(false);
+        panelShop.gameObject.SetActive(true);
+        panelEbash.SetActive(false);
+    }
+
     private void BtnEbash_Clicked()
     {
         panelDeck.gameObject.SetActive(false);
+        panelShop.gameObject.SetActive(false);
         panelEbash.SetActive(true);
     }
 
@@ -342,5 +363,6 @@ public class Menu : MonoBehaviour
         panelDeck.UpdateInventoryCards();
 
         panelEbash.SetActive(false);
+        panelShop.gameObject.SetActive(false);
     }
 }
