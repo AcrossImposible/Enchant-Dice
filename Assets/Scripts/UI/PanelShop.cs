@@ -8,6 +8,11 @@ using UnityEngine.Events;
 
 public class PanelShop : MonoBehaviour
 {
+    [Header("БЕСПЛАТНЫЕ БОНУСЫ")]
+    [SerializeField] TMP_Text freeBonusTitle;
+    [SerializeField] Button btnFreeCoins;
+    [SerializeField] Button btnFreeStones;
+
     [Header("МОНЕТКИ ЗА РЕКЛАМУ")]
     [SerializeField] BtnCoinsRewarded[] btnsCoinsRewarded;
     [SerializeField] ToastNotify coinsRewardNotifyPrefab;
@@ -23,6 +28,14 @@ public class PanelShop : MonoBehaviour
     const string coinsRewardIdxKey = "coinsRewardIdxKey";
     const string coinsRewardResetKey = "coinsRewardResetKey";
 
+    const string coinsFreeKey = "coinsFreeKey";
+    const string stonesFreeKey = "stonesFreeKey";
+
+    AvailableView btnFreeCoinsAvailable;
+    AvailableView btnFreeStonesAvailable;
+
+    string freeUnavailableMsg;
+
     bool coinsRewardsUnavailable;
     bool allCoinsRewardUnavailable;
     int rewardID;
@@ -31,11 +44,18 @@ public class PanelShop : MonoBehaviour
     {
         DailyRewardModule.RegisterReward(rewardedCoinsKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(1));
         DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(3));
+        DailyRewardModule.RegisterReward(coinsFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
+        DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
 
         //DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.DailyUtcReset);
 
+        freeUnavailableMsg = "Это ежедневная награда, ты сможешь снова получить её завтра";
+
         YG.YandexGame.RewardVideoEvent += RewardVideo_Watched;
         YG.YandexGame.CloseVideoEvent += RewarVideo_Closed;
+
+        btnFreeCoins.onClick.AddListener(FreeCoins_Clicked);
+        btnFreeStones.onClick.AddListener(FreeStones_Clicked);
 
         for (int i = 0; i < btnsCoinsRewarded.Length; i++)
         {
@@ -44,12 +64,41 @@ public class PanelShop : MonoBehaviour
             btnCoins.onClick.AddListener(CoinsRewarded_Clicked);
         }
 
+        btnFreeCoinsAvailable = btnFreeCoins.GetComponent<AvailableView>();
+        btnFreeStonesAvailable = btnFreeStones.GetComponent<AvailableView>();
+
         CoinsRewardCheckAvailable();
     }
 
-    private void RewarVideo_Closed()
+    private void FreeStones_Clicked()
     {
-        
+        if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable)
+        {
+            InfoPopup.Show(infoPopupPrefab, "Внимание!", new InfoPopup.InfoItemData(freeUnavailableMsg));
+        }
+        else
+        {
+            DailyRewardModule.Claim(stonesFreeKey, null);
+            btnFreeStones.GetComponent<AttentionAnim>().Play();
+            btnFreeStonesAvailable.Unavailable();
+            User.Data.countStones += 100;
+        }
+    }
+
+        private void FreeCoins_Clicked()
+    {
+        var availableView = btnFreeCoins.GetComponent<AvailableView>();
+        if (availableView.state is AvailableView.State.Unavailable)
+        {
+            InfoPopup.Show(infoPopupPrefab, "Внимание!", new InfoPopup.InfoItemData(freeUnavailableMsg));
+        }
+        else
+        {
+            DailyRewardModule.Claim(coinsFreeKey, null);
+            btnFreeCoins.GetComponent<AttentionAnim>().Play();
+            btnFreeCoins.GetComponent<AvailableView>().Unavailable();
+            User.Data.golda += 100;
+        }
     }
 
     private void RewardVideo_Watched(int adID)
@@ -178,6 +227,33 @@ public class PanelShop : MonoBehaviour
         {
             PlayerPrefs.DeleteKey(rewardedCoinsKey);
         }
+
+        FreeBonusUpdate();
+    }
+
+    void FreeBonusUpdate()
+    {
+        if (DailyRewardModule.CanClaim(coinsFreeKey) && btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
+        {
+            btnFreeCoinsAvailable.Available();
+            btnFreeCoins.GetComponent<AttentionAnim>().Play();
+        }
+
+        if (DailyRewardModule.CanClaim(stonesFreeKey) && btnFreeStonesAvailable.state is AvailableView.State.Unavailable)
+        {
+            btnFreeStonesAvailable.Available();
+            btnFreeStones.GetComponent<AttentionAnim>().Play();
+        }
+
+        var unavailableTitle = "Сегодня ты уже всё получил";
+        if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable && btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
+        {
+            freeBonusTitle.SetText(unavailableTitle);
+        }
+        else if (freeBonusTitle.text == unavailableTitle)
+        {
+            freeBonusTitle.SetText("Забери просто так!");
+        }
     }
 
     void CoinsRewardCheckAvailable()
@@ -262,6 +338,11 @@ public class PanelShop : MonoBehaviour
         YG.YandexGame.RewVideoShow(btn.Idx);
         
 #endif
+    }
+
+    private void RewarVideo_Closed()
+    {
+
     }
 
     public void Dispose ()

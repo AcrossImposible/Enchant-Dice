@@ -51,6 +51,22 @@ public static class LeanTweanTool
         }, start, target, time).setEase(easeType);
     }
 
+    public static LTDescr SetTransparencyImage(Graphic graphic, float target, float time = 0.18f, LeanTweenType easeType = LeanTweenType.easeOutQuad)
+    {
+        var start = graphic.color.a;
+        return LeanTween.value(graphic.gameObject, a =>
+        {
+            if (graphic)
+            {
+                var c = graphic.color;
+                c.a = a;
+                graphic.color = c;
+            }
+            //Debug.Log($"{image.color.a} === {image} === {image.transform.parent}");
+
+        }, start, target, time).setEase(easeType);
+    }
+
     public static LTDescr SetTransparencyImage(CanvasGroup group, float target, float time = 0.18f, LeanTweenType easeType = LeanTweenType.easeOutQuad)
     {
         var start = group.alpha;
