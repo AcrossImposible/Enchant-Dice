@@ -43,7 +43,10 @@ public class ToastNotify : MonoBehaviour
 
     public static void Show(ToastNotify prefab, string txt, Sprite icon)
     {
-        uiRoot ??= FindFirstObjectByType<CanvasScaler>().transform;
+        if (!uiRoot)
+        {
+            uiRoot = FindFirstObjectByType<CanvasScaler>().transform;
+        }
 
         var view = Instantiate(prefab, uiRoot);
         view.Init(txt, icon);

@@ -13,6 +13,10 @@ public class BtnCoinsRewarded : MonoBehaviour
     [SerializeField] Image watchedMarker;
     [SerializeField] int idx;
 
+    [Space]
+
+    [SerializeField] AttentionAnim attentionAnim;
+
     public State state;
 
     public int Idx => idx;
@@ -50,6 +54,9 @@ public class BtnCoinsRewarded : MonoBehaviour
 
         LeanTweanTool.SetTransparencyImage(adIcon, 1f);
         LeanTweanTool.SetTransparencyImage(button.image, 1f);
+        LeanTweanTool.HideImage(watchedMarker);
+
+        attentionAnim.Play();
     }
 
     public void Watched()
@@ -57,11 +64,18 @@ public class BtnCoinsRewarded : MonoBehaviour
         if (state is State.Watched)
             return;
 
+        if (state is State.Unavailable)
+        {
+            attentionAnim.Play();
+        }
+
         state = State.Watched;
 
         watchedMarker.gameObject.SetActive(true);
         LeanTweanTool.HideImage(adIcon);
         LeanTweanTool.ShowImage(watchedMarker);
+
+        
     }
 
     public enum State

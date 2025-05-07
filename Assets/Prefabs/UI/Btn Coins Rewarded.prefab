@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 1439898302385834903}
   - component: {fileID: 2771293191106903254}
   - component: {fileID: 4578363882402238500}
+  - component: {fileID: 2016502514276448054}
   m_Layer: 5
   m_Name: Btn Coins Rewarded
   m_TagString: Untagged
@@ -304,6 +305,12 @@ MonoBehaviour:
   button: {fileID: 2771293191106903254}
   adIcon: {fileID: 5786242419296988864}
   watchedMarker: {fileID: 8206851972181319300}
+  idx: 0
+  attentionAnim: {fileID: 2016502514276448054}
+  state: 0
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &8749010663472973060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -412,6 +419,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2016502514276448054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275846288027795191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629d1f4325c78f848988a34cf63aa4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: {x: 0.8, y: 0.8, z: 0.5}
+  maxScale: {x: 1.1, y: 1.1, z: 1.1}
+  duration: 0.8
 --- !u!1 &5418724711357147111
 GameObject:
   m_ObjectHideFlags: 0

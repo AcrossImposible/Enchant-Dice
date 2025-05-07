@@ -341,6 +341,8 @@ public class Menu : MonoBehaviour
     {
         YG.YandexGame.GetDataEvent -= Data_Geted;
         YG.YandexGame.onGetLeaderboard -= LB_geted;
+
+        panelShop.Dispose();
     }
 
     private void BtnShop_Clicked()
