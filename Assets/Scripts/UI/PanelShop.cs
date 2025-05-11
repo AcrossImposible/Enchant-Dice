@@ -12,6 +12,7 @@ public class PanelShop : MonoBehaviour
     [SerializeField] TMP_Text freeBonusTitle;
     [SerializeField] Button btnFreeCoins;
     [SerializeField] Button btnFreeStones;
+    [SerializeField] ParticleSystem flyCoinsEffect;
 
     [Header("МОНЕТКИ ЗА РЕКЛАМУ")]
     [SerializeField] BtnCoinsRewarded[] btnsCoinsRewarded;
@@ -22,7 +23,7 @@ public class PanelShop : MonoBehaviour
     [SerializeField] InfoPopup infoPopupPrefab;
     [SerializeField] TMP_Text rewardCoinsTitle; 
 
-    [HideInInspector] public UnityEvent onUserDataUpdate;
+    [HideInInspector] public UnityEvent<float> onCoinsUpdate;
 
     const string rewardedCoinsKey = "rewardedCoins";
     const string coinsRewardIdxKey = "coinsRewardIdxKey";
@@ -45,7 +46,7 @@ public class PanelShop : MonoBehaviour
         DailyRewardModule.RegisterReward(rewardedCoinsKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(1));
         DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(3));
         DailyRewardModule.RegisterReward(coinsFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
-        DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
+        DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(10));
 
         //DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.DailyUtcReset);
 
@@ -82,10 +83,11 @@ public class PanelShop : MonoBehaviour
             btnFreeStones.GetComponent<AttentionAnim>().Play();
             btnFreeStonesAvailable.Unavailable();
             User.Data.countStones += 100;
+            Saver.Save();
         }
     }
 
-        private void FreeCoins_Clicked()
+    private void FreeCoins_Clicked()
     {
         var availableView = btnFreeCoins.GetComponent<AvailableView>();
         if (availableView.state is AvailableView.State.Unavailable)
@@ -98,6 +100,9 @@ public class PanelShop : MonoBehaviour
             btnFreeCoins.GetComponent<AttentionAnim>().Play();
             btnFreeCoins.GetComponent<AvailableView>().Unavailable();
             User.Data.golda += 100;
+            Saver.Save();
+            flyCoinsEffect.Play();
+            onCoinsUpdate?.Invoke(2.1f);
         }
     }
 
@@ -164,7 +169,7 @@ public class PanelShop : MonoBehaviour
 
             DailyRewardModule.Claim(coinsRewardResetKey, null);
 
-            onUserDataUpdate?.Invoke();
+            onCoinsUpdate?.Invoke(3.1f);
 
             ToastNotify.Show(coinsRewardNotifyPrefab, $"+{reward}", coinSprite);
             Instantiate(coinsRewardEffectPrefab, transform);
@@ -233,19 +238,33 @@ public class PanelShop : MonoBehaviour
 
     void FreeBonusUpdate()
     {
-        if (DailyRewardModule.CanClaim(coinsFreeKey) && btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
+        if (DailyRewardModule.CanClaim(coinsFreeKey))
         {
-            btnFreeCoinsAvailable.Available();
-            btnFreeCoins.GetComponent<AttentionAnim>().Play();
+            if (btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
+            {
+                btnFreeCoinsAvailable.Available();
+                btnFreeCoins.GetComponent<AttentionAnim>().Play();
+            }
+        }
+        else if (!(btnFreeCoinsAvailable.state is AvailableView.State.Unavailable))
+        {
+            btnFreeCoinsAvailable.Unavailable();
         }
 
-        if (DailyRewardModule.CanClaim(stonesFreeKey) && btnFreeStonesAvailable.state is AvailableView.State.Unavailable)
+        if (DailyRewardModule.CanClaim(stonesFreeKey))
         {
-            btnFreeStonesAvailable.Available();
-            btnFreeStones.GetComponent<AttentionAnim>().Play();
+            if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable)
+            {
+                btnFreeStonesAvailable.Available();
+                btnFreeStones.GetComponent<AttentionAnim>().Play();
+            }
+        }
+        else if (!(btnFreeStonesAvailable.state is AvailableView.State.Unavailable))
+        {
+            btnFreeStonesAvailable.Unavailable();
         }
 
-        var unavailableTitle = "Сегодня ты уже всё получил";
+        var unavailableTitle = "Сегодня уже всё получено";
         if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable && btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
         {
             freeBonusTitle.SetText(unavailableTitle);

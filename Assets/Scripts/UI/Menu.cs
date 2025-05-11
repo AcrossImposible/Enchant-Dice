@@ -13,6 +13,7 @@ public class Menu : MonoBehaviour
     [SerializeField] PanelShop panelShop;
     [SerializeField] GameObject panelChestResult;
     [SerializeField] PanelUpdateGame panelUpdateGame;
+    [SerializeField] YGLeaderBoard leaderBoard;
 
     [Space]
 
@@ -29,8 +30,13 @@ public class Menu : MonoBehaviour
 
     [Space]
 
+    [SerializeField] CoinRewardAnimator coinAnim;
+
+    [Space]
+
     [SerializeField] TMP_Text labelExp;
     [SerializeField] TMP_Text labelGold;
+    [SerializeField] TMP_Text labelStones;
     [SerializeField] TMP_Text labelCountCards;
     [SerializeField] TMP_Text labelMaxWave;
 
@@ -85,8 +91,11 @@ public class Menu : MonoBehaviour
         //checkGameVersion.versionNotMatch += GameVersion_NotMatched;
         if (loaded)
         {
+            leaderBoard.Init();
+            leaderBoard.InvokeGetLeadearBoard();
+
             panelShop.Init();
-            panelShop.onUserDataUpdate.AddListener(UserData_Updated);
+            panelShop.onCoinsUpdate.AddListener(UserData_Updated);
 #if UNITY_WEBGL
 
             if (YG.YandexGame.savesData != null && string.IsNullOrEmpty(YG.YandexGame.savesData.newPlayerName))
@@ -127,9 +136,17 @@ public class Menu : MonoBehaviour
 
     }
 
-    private void UserData_Updated()
+    bool userDataUpdate = false;
+    private void UserData_Updated(float delay)
     {
-        
+        userDataUpdate = true;
+
+        LeanTween.delayedCall(delay, Delay);
+
+        void Delay()
+        {
+            coinAnim.Play(1.5f, User.Data.golda, () => { userDataUpdate = false; });
+        }
     }
 
     private void Nickname_Submited(string value)
@@ -178,10 +195,9 @@ public class Menu : MonoBehaviour
 
         Photon.Pun.PhotonNetwork.NickName = data.newPlayerName;
 #endif
-        YG.YandexGame.GetLeaderboard("wave", 20, 3, 6, "nonePhoto");
+        
         loaded = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menuha");
-        print($"Данные загружены {data.maxWave} ===");
     }
 
     void UpdateUI()
@@ -314,12 +330,16 @@ public class Menu : MonoBehaviour
             PlayerPrefs.DeleteAll();
 
         if (Input.GetKeyDown(KeyCode.B))
-            YG.YandexGame.GetLeaderboard("wave", 20, 3, 6, "nonePhoto");
+            YG.YandexGame.GetLeaderboard("wave", 20, 3, 6, "medium");
 
         string txt = Language.Rus ? "Уровень" : "LvL";
         labelExp.text = $"{txt} {User.Data.lvl} ({User.Data.exp}/{User.Data.ExpToNextLvl})";
-        txt = Language.Rus ? "Золото" : "Gold";
-        labelGold.SetText($"{txt} {User.Data.golda}");
+
+        if (!userDataUpdate)
+        {
+            labelGold.SetText($"{User.Data.golda}");
+        }
+        labelStones.SetText($"{User.Data.countStones}");
     }
 
     private void LB_geted(LBData obj)
@@ -327,7 +347,7 @@ public class Menu : MonoBehaviour
         if (obj == null || obj.thisPlayer == null)
             return;
 
-        print($"Запись в лдиерборде {obj.thisPlayer.score}");
+        print($"Запись в лидерборде {obj.thisPlayer.score}");
         if (User.Data.maxWave < obj.thisPlayer.score)
         {
             User.Data.maxWave = obj.thisPlayer.score;

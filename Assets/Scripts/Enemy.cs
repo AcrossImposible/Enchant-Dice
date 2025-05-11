@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
         UpdateMoveDirection();
 
-        reward += 10 * (GameManager.Instance.Wave / 5);
+        reward += 10 * (GameManager.Instance.Wave / 7);
 
         currentHP = CalculateHP(number);
 

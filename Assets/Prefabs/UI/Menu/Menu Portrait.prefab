@@ -769,6 +769,7 @@ MonoBehaviour:
   panelShop: {fileID: 8175030236963020083}
   panelChestResult: {fileID: 3816705654485108822}
   panelUpdateGame: {fileID: 5120380545206186059}
+  leaderBoard: {fileID: 0}
   btnShop: {fileID: 7117991662687023807}
   btnDeck: {fileID: 4877805255734180386}
   btnEbash: {fileID: 7414589831092893323}
@@ -777,8 +778,10 @@ MonoBehaviour:
   connectingInfo: {fileID: 7448100453181976823}
   btnOpenChest: {fileID: 8407505119891305082}
   btnTutor: {fileID: 6412598099042927270}
+  coinAnim: {fileID: 0}
   labelExp: {fileID: 3270587851106014630}
-  labelGold: {fileID: 913825332085406358}
+  labelGold: {fileID: 9182371017619918740}
+  labelStones: {fileID: 2814962179638793820}
   labelCountCards: {fileID: 1176232701048081560}
   labelMaxWave: {fileID: 6150130400619118770}
   chestResultParent: {fileID: 4824198842533590197}
@@ -1287,9 +1290,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
---- !u!114 &913825332085406358 stripped
+--- !u!224 &2375459214392528457 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3087448767628350817, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
+  m_PrefabInstance: {fileID: 733948037805579048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2814962179638793820 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 468671874927894974, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3260396029701819764, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
   m_PrefabInstance: {fileID: 733948037805579048}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1298,14 +1306,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2375459214392528457 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3087448767628350817, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
-  m_PrefabInstance: {fileID: 733948037805579048}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3270587851106014630 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2831910431128211086, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
+  m_PrefabInstance: {fileID: 733948037805579048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9182371017619918740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8449267542214366396, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
   m_PrefabInstance: {fileID: 733948037805579048}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -2074,10 +2088,6 @@ PrefabInstance:
     - target: {fileID: 550562702509659123, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
       propertyPath: m_text
       value: Connecting..
-      objectReference: {fileID: 0}
-    - target: {fileID: 1588744120058218297, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2258295506041530272, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
       propertyPath: m_Name

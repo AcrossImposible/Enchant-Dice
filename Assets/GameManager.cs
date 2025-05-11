@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var player in allPlayers)
             {
-                player.Coins += 30 * Wave;
+                player.Coins += 10 * Wave;
             }
         }
     }
