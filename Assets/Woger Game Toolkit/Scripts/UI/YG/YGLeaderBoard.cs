@@ -89,15 +89,24 @@ public class YGLeaderBoard : MonoBehaviour
     {
         if (lbData.technoName == boardName)
         {
-            title.SetText("Максимально прожито волн в кооперативе");
+            var maxWaveStr = Language.Rus 
+                ? "Максимально прожито волн в кооперативе" 
+                : "Maximum waves spent in the cooperative";
+            title.SetText(maxWaveStr);
 
             if (!YandexGame.auth)
             {
-                title.SetText("<color=#FFF300>Войди в свой Яндекс аккаунт, чтобы соревноватсья с другими игроками!</color>");
+                var auth = Language.Rus 
+                    ? "Войди в свой Яндекс аккаунт, чтобы соревноваться с другими игроками!"
+                    : "Log in to your account to compete with other players!";
+                title.SetText($"<color=#FFF300>{auth}</color>");
             }
             else if (lbData.thisPlayer == null)
             {
-                title.SetText($"<color=#56D15D>Играй в кооператив, покажи другим как долго ты продержишься!</color>");
+                var playCoop = Language.Rus 
+                    ? "Играй в кооператив, покажи другим как долго ты продержишься!" 
+                    : "Play co-op, show others how long you can last!";
+                title.SetText($"<color=#56D15D>{playCoop}</color>");
             }
 
             if (lbData.entries != "no data")
@@ -110,7 +119,7 @@ public class YGLeaderBoard : MonoBehaviour
             }
             else
             {
-                Debug.Log("Нихуя нет");
+                Debug.Log("  нет");
             }
 
             LeanTweanTool.SetTransparencyImage(canvasGroup, 1f, 0.58f);

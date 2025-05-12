@@ -19,14 +19,14 @@ public class YG_LB_ItemView : MonoBehaviour
     }
     public TextLegasy textLegasy;
 
-#if YG_TEXT_MESH_PRO
+
     [Serializable]
     public struct TextMP
     {
         public TextMeshProUGUI rank, name, score;
     }
     public TextMP textMP;
-#endif
+
 
     public class Data
     {
@@ -51,11 +51,11 @@ public class YG_LB_ItemView : MonoBehaviour
         if (textLegasy.name && data.name != null) textLegasy.name.text = data.name;
         if (textLegasy.score && data.score != null) textLegasy.score.text = data.score.ToString();
 
-#if YG_TEXT_MESH_PRO
+
         if (textMP.rank && data.rank != null) textMP.rank.text = data.rank.ToString();
         if (textMP.name && data.name != null) textMP.name.text = data.name;
         if (textMP.score && data.score != null) textMP.score.text = data.score.ToString();
-#endif
+
         if (imageLoad)
         {
             if (data.photoSprite)

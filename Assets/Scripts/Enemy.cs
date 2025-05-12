@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
     void SpawnPowerStone()
     {
         var pos = transform.position + (Vector3.back * 8) + (Vector3.up * 0.5f);
+        pos += (Vector3)Random.insideUnitCircle;
         Instantiate(powerStonePrefab, pos, Quaternion.identity);
     }
 

@@ -769,7 +769,7 @@ MonoBehaviour:
   panelShop: {fileID: 8175030236963020083}
   panelChestResult: {fileID: 3816705654485108822}
   panelUpdateGame: {fileID: 5120380545206186059}
-  leaderBoard: {fileID: 0}
+  leaderBoard: {fileID: 952550453348134942}
   btnShop: {fileID: 7117991662687023807}
   btnDeck: {fileID: 4877805255734180386}
   btnEbash: {fileID: 7414589831092893323}
@@ -778,7 +778,7 @@ MonoBehaviour:
   connectingInfo: {fileID: 7448100453181976823}
   btnOpenChest: {fileID: 8407505119891305082}
   btnTutor: {fileID: 6412598099042927270}
-  coinAnim: {fileID: 0}
+  coinAnim: {fileID: 916516398327968673}
   labelExp: {fileID: 3270587851106014630}
   labelGold: {fileID: 9182371017619918740}
   labelStones: {fileID: 2814962179638793820}
@@ -1290,6 +1290,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
+--- !u!114 &916516398327968673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 475023198217808009, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
+  m_PrefabInstance: {fileID: 733948037805579048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d8803d40ec6a8449a3132be7ed9a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2375459214392528457 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3087448767628350817, guid: 04e6f8665520a564980f1792ef4ef742, type: 3}
@@ -2097,6 +2108,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2993397993047190266, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9490196
+      objectReference: {fileID: 0}
     - target: {fileID: 6124826526165992883, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2219,6 +2234,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435.."
+--- !u!114 &952550453348134942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8862193825177924314, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
+  m_PrefabInstance: {fileID: 8630293006669316804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c594bbaadfea146810f1e82de077d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1176232701048081560 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7464193751238004316, guid: c4677fd9848065e43bdfe915b9020891, type: 3}

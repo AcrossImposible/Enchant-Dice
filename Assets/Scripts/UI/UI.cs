@@ -67,6 +67,8 @@ public class UI : MonoBehaviour
         panelComplete.SetActive(false);
         panelSplittingTooltip.SetActive(false);
         panelConfirmSplitting.SetActive(false);
+
+        UpdateLayoutStones();
     }
 
     private string GetBotName()
@@ -304,8 +306,19 @@ public class UI : MonoBehaviour
         labelWave.text = wave;
         labelWaveTopPanel.text = wave;
 
-        var txtPowerStones = Language.Rus ? "Камни усиления" : "Power Stones";
-        labelCountPowerStones.text = $"{txtPowerStones} x{User.Data.countStones}";
+        labelCountPowerStones.text = $"x{User.Data.countStones}";
+    }
+
+    void UpdateLayoutStones()
+    {
+        StartCoroutine(Delay());
+
+        IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(1.0f);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(labelCountPowerStones.transform.parent as RectTransform);
+        }
     }
 
     public void ShowPanelWave()

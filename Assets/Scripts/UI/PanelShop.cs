@@ -50,7 +50,9 @@ public class PanelShop : MonoBehaviour
 
         //DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.DailyUtcReset);
 
-        freeUnavailableMsg = "Это ежедневная награда, ты сможешь снова получить её завтра";
+        freeUnavailableMsg = Language.Rus 
+            ? "Это ежедневная награда, ты сможешь снова получить её завтра"
+            : "This is a daily reward, you can get it again tomorrow.";
 
         YG.YandexGame.RewardVideoEvent += RewardVideo_Watched;
         YG.YandexGame.CloseVideoEvent += RewarVideo_Closed;
@@ -75,7 +77,8 @@ public class PanelShop : MonoBehaviour
     {
         if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable)
         {
-            InfoPopup.Show(infoPopupPrefab, "Внимание!", new InfoPopup.InfoItemData(freeUnavailableMsg));
+            var attentionStr = Language.Rus ? "Внимание!" : "Attention!";
+            InfoPopup.Show(infoPopupPrefab, attentionStr, new InfoPopup.InfoItemData(freeUnavailableMsg));
         }
         else
         {
@@ -92,7 +95,8 @@ public class PanelShop : MonoBehaviour
         var availableView = btnFreeCoins.GetComponent<AvailableView>();
         if (availableView.state is AvailableView.State.Unavailable)
         {
-            InfoPopup.Show(infoPopupPrefab, "Внимание!", new InfoPopup.InfoItemData(freeUnavailableMsg));
+            var attentionStr = Language.Rus ? "Внимание!" : "Attention!";
+            InfoPopup.Show(infoPopupPrefab, attentionStr, new InfoPopup.InfoItemData(freeUnavailableMsg));
         }
         else
         {
@@ -197,9 +201,12 @@ public class PanelShop : MonoBehaviour
         TimeSpan rem = DailyRewardModule.GetTimeRemaining(rewardedCoinsKey);
         coinsRewardsUnavailable = rem > TimeSpan.Zero;
 
+        var getExtraCoins = Language.Rus 
+            ? "Получи дополнительные монеты!" 
+            : "Get extra coins!";
         rewardCoinsTitle.text = coinsRewardsUnavailable
             ? $"{rem.Hours:D2}:{rem.Minutes:D2}:{rem.Seconds:D2}"
-            : "Получи дополнительные монеты!";
+            : getExtraCoins;
 
         if (allCoinsRewardUnavailable && !coinsRewardsUnavailable)
         {
@@ -264,14 +271,16 @@ public class PanelShop : MonoBehaviour
             btnFreeStonesAvailable.Unavailable();
         }
 
-        var unavailableTitle = "Сегодня уже всё получено";
+
+        var unavailableTitle = Language.Rus ? "Сегодня уже всё получено" : "Everything has already been received today";
         if (btnFreeStonesAvailable.state is AvailableView.State.Unavailable && btnFreeCoinsAvailable.state is AvailableView.State.Unavailable)
         {
             freeBonusTitle.SetText(unavailableTitle);
         }
         else if (freeBonusTitle.text == unavailableTitle)
         {
-            freeBonusTitle.SetText("Забери просто так!");
+            var freeLabel = Language.Rus ? "Забери просто так!" : "Take it away just like that!";
+            freeBonusTitle.SetText(freeLabel);
         }
     }
 
@@ -325,28 +334,36 @@ public class PanelShop : MonoBehaviour
 
     private void CoinsRewarded_Clicked(BtnCoinsRewarded btn)
     {
-        
+        var attentionStr = Language.Rus ? "Внимание!" : "Attention!";
+
         if (btn.state is BtnCoinsRewarded.State.Unavailable)
         {
             if (allCoinsRewardUnavailable)
             {
+                var waitResetTimer = 
+                    Language.Rus 
+                    ? "Дождись сброса времени. Не переживай, максимальная награда будет сразу доступна в течении дня" 
+                    : "Wait for the time to reset. Don't worry, the maximum reward will be immediately available during the day.";
+                
                 InfoPopup.Show
                 (
                     infoPopupPrefab,
-                    "Внимание!",
-                    new InfoPopup.InfoItemData(
-                        $"Дождись сброса времени. Не переживай, максимальная награда будет сразу доступна в течении дня")
+                    attentionStr,
+                    new InfoPopup.InfoItemData(waitResetTimer)
                 );
             }
             else
             {
                 var r = btn.Idx == 1 ? "+100" : "+500";
+                var getPrevReward = Language.Rus 
+                    ? "Сначала вам нужно получить предыдущую награду"
+                    : "First you need to get the previous reward";
 
                 InfoPopup.Show
                 (
                     infoPopupPrefab,
-                    "Внимание!",
-                    new InfoPopup.InfoItemData($"Сначала вам нужно получить предыдущую награду"),
+                    attentionStr,
+                    new InfoPopup.InfoItemData(getPrevReward),
                     new InfoPopup.InfoItemData($"{r}", coinSprite)
                 );
             }

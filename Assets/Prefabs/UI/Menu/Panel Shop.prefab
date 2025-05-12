@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 2301772504502074544}
   - component: {fileID: 7064244689900616869}
   - component: {fileID: 25369715211477976}
+  - component: {fileID: 6198016854768798685}
   m_Layer: 5
   m_Name: txt Get Free Coins
   m_TagString: Untagged
@@ -259,8 +260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -35.67}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -32}
+  m_SizeDelta: {x: -60, y: 58}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2301772504502074544
 CanvasRenderer:
@@ -290,8 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0417\u0430\u0431\u0435\u0440\u0438 \u043F\u0440\u043E\u0441\u0442\u043E
-    \u0442\u0430\u043A!"
+  m_text: Take it away just like that!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19ac6e16e64d3be45966c64db91ec3b6, type: 2}
   m_sharedMaterial: {fileID: 5523717785988160735, guid: 19ac6e16e64d3be45966c64db91ec3b6, type: 2}
@@ -318,12 +318,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 47
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -380,6 +380,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6198016854768798685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451012670580471676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac6b9eeeb27cc24aa3b0899c6379b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: "\u0417\u0430\u0431\u0435\u0440\u0438 \u043F\u0440\u043E\u0441\u0442\u043E
+    \u0442\u0430\u043A!"
 --- !u!1 &2131767672061284412
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +805,7 @@ GameObject:
   - component: {fileID: 1383029063847926472}
   - component: {fileID: 3882888000173838903}
   - component: {fileID: 5719427398354148307}
+  - component: {fileID: 2228800083618631470}
   m_Layer: 5
   m_Name: 'Btn Free Coins '
   m_TagString: Untagged
@@ -940,9 +955,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629d1f4325c78f848988a34cf63aa4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: {x: 0.8, y: 0.8, z: 0.5}
+  minScale: {x: 0.9, y: 0.9, z: 0.5}
   maxScale: {x: 1.1, y: 1.1, z: 1.1}
-  duration: 0.8
+  duration: 0.18
+--- !u!114 &2228800083618631470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3814985307255311555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f215deded336a74da753bc754021b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oAnims:
+  - {fileID: 6379816848042445999}
+  - {fileID: 3341110749617709507}
+  - {fileID: 8630619112075925553}
+  transparency: 0.5
+  state: 0
 --- !u!1 &4722140592129636047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1494,7 @@ GameObject:
   - component: {fileID: 3462751534057586857}
   - component: {fileID: 5693013950817511414}
   - component: {fileID: 4489030455303902786}
+  - component: {fileID: 3577650771697941302}
   m_Layer: 5
   m_Name: Btn Free Stones
   m_TagString: Untagged
@@ -1609,9 +1643,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629d1f4325c78f848988a34cf63aa4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: {x: 0.8, y: 0.8, z: 0.5}
+  minScale: {x: 0.9, y: 0.9, z: 0.5}
   maxScale: {x: 1.1, y: 1.1, z: 1.1}
-  duration: 0.8
+  duration: 0.18
+--- !u!114 &3577650771697941302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759757227710565461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f215deded336a74da753bc754021b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oAnims:
+  - {fileID: 1933507532638954475}
+  - {fileID: 9171980153893110912}
+  - {fileID: 7274211883862334028}
+  transparency: 0.5
+  state: 0
 --- !u!1 &6816457763003838838
 GameObject:
   m_ObjectHideFlags: 0

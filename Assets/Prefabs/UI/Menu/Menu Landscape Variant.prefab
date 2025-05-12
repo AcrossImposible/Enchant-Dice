@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 1300
       objectReference: {fileID: 0}
+    - target: {fileID: 1740494470514561389, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 2221577355317787546, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -71,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 2538680564833290103, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807762009911121417, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_ScrollSensitivity
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2995919734733107974, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_IsActive
@@ -224,6 +232,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Landscape Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5695443295921873910, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_MinHeight
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695443295921873910, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_PreferredHeight
+      value: 190
+      objectReference: {fileID: 0}
     - target: {fileID: 5816583229567475142, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -312,6 +328,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8175030236963020083, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: infoPopupPrefab
+      value: 
+      objectReference: {fileID: 1990745408438185333, guid: 54314373ac3691646987554f8cb9db84, type: 3}
+    - target: {fileID: 8175030236963020083, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: coinsRewardNotifyPrefab
+      value: 
+      objectReference: {fileID: 9215348066606297100, guid: 53a4668ec75f8b041975297ac3361fb7, type: 3}
     - target: {fileID: 8196090024905860850, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -354,6 +378,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491260429600795398, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551709122780419572, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8725394849170457743, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
