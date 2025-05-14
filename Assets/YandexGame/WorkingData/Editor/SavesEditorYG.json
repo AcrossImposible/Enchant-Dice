@@ -1,12 +1,12 @@
 {
-  "idSave": 1236,
+  "idSave": 1414,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
-  "money": 5339,
+  "money": 5229,
   "newPlayerName": "Jiza",
-  "countCards": 38,
-  "countStones": 2050,
+  "countCards": 10,
+  "countStones": 2164,
   "tutorCompleted": true,
   "deck": [
     {
@@ -38,66 +38,66 @@
   "inventory": [
     {
       "idx": 0,
-      "count": 0,
-      "lvl": 5
+      "count": 12,
+      "lvl": 8
     },
     {
       "idx": 1,
-      "count": 3,
-      "lvl": 3
+      "count": 5,
+      "lvl": 8
     },
     {
       "idx": 2,
-      "count": 2,
-      "lvl": 4
+      "count": 8,
+      "lvl": 8
     },
     {
       "idx": 3,
-      "count": 5,
-      "lvl": 3
+      "count": 6,
+      "lvl": 6
     },
     {
       "idx": 4,
-      "count": 0,
-      "lvl": 1
+      "count": 5,
+      "lvl": 7
     },
     {
       "idx": 7,
       "count": 2,
-      "lvl": 3
+      "lvl": 7
     },
     {
       "idx": 9,
-      "count": 1,
-      "lvl": 3
+      "count": 5,
+      "lvl": 9
     },
     {
       "idx": 5,
-      "count": 5,
-      "lvl": 3
+      "count": 10,
+      "lvl": 6
     },
     {
       "idx": 6,
-      "count": 1,
-      "lvl": 3
+      "count": 13,
+      "lvl": 7
     },
     {
       "idx": 8,
       "count": 0,
-      "lvl": 4
+      "lvl": 7
     },
     {
       "idx": 10,
-      "count": 2,
-      "lvl": 2
+      "count": 14,
+      "lvl": 8
     },
     {
       "idx": 11,
-      "count": 1,
-      "lvl": 2
+      "count": 16,
+      "lvl": 6
     }
   ],
-  "exp": 24,
+  "exp": 19,
   "lvl": 2,
   "maxWave": 10,
   "openLevels": null

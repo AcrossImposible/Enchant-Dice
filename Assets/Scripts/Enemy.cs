@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] TMP_Text labelHP;
     [SerializeField] SpriteRenderer damageEffect;
     [SerializeField] float effectTransparency = 0.5f;
+    [SerializeField] GameObject[] annigEffectPrefabs;
 
     [field: SerializeField]
     public float Speed { get; set; }
@@ -68,6 +69,11 @@ public class Enemy : MonoBehaviour
             if (Team == Team.Mine && GameManager.Instance.IsPVP && Random.Range(0, 130) < 8)
             {
                 SpawnPowerStone();
+            }
+
+            foreach (var item in annigEffectPrefabs)
+            {
+                Instantiate(item, transform.position, Quaternion.identity);
             }
         }
 

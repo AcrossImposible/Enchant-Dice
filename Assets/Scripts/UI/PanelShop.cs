@@ -31,7 +31,7 @@ public class PanelShop : MonoBehaviour
 
     const string rewardedCoinsKey = "rewardedCoins";
     const string coinsRewardIdxKey = "coinsRewardIdxKey";
-    const string coinsRewardResetKey = "coinsRewardResetKey";
+    const string coinsRewardResetKey = "coinsRewardResetKey";// Нужен для сброса просмотренности рекламы
 
     const string coinsFreeKey = "coinsFreeKey";
     const string stonesFreeKey = "stonesFreeKey";
@@ -49,10 +49,13 @@ public class PanelShop : MonoBehaviour
 
     public void Init()
     {
-        DailyRewardModule.RegisterReward(rewardedCoinsKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(1));
-        DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(3));
-        DailyRewardModule.RegisterReward(coinsFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
-        DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(10));
+        DailyRewardModule.RegisterReward(rewardedCoinsKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(30));
+        DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.DailyUtcReset);
+        //DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(3));
+        //DailyRewardModule.RegisterReward(coinsFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromSeconds(10));
+        //DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.FixedInterval, TimeSpan.FromMinutes(10));
+        DailyRewardModule.RegisterReward(coinsFreeKey, DailyRewardModule.ResetMode.DailyUtcReset);
+        DailyRewardModule.RegisterReward(stonesFreeKey, DailyRewardModule.ResetMode.DailyUtcReset);
 
         //DailyRewardModule.RegisterReward(coinsRewardResetKey, DailyRewardModule.ResetMode.DailyUtcReset);
 
@@ -84,7 +87,7 @@ public class PanelShop : MonoBehaviour
     {
         btnStonesReward.GetComponent<AttentionAnim>().Play(ShowAd);
 
-        void ShowAd()
+        static void ShowAd()
         {
 #if UNITY_WEBGL && YG_PLUGIN_YANDEX_GAME
             YG.YandexGame.RewVideoShow(REWARD_STONES_ID);

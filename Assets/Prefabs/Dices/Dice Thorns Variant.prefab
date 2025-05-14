@@ -344,7 +344,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepDamage: 5
+  stepDamage: 10
   stepFireRate: 0.01
   stages:
   - {fileID: 931089766408040514}

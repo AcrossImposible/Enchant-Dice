@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.07058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -133,6 +133,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   labelHP: {fileID: 7218235622496943167}
   damageEffect: {fileID: 4711533933790578427}
+  effectTransparency: 0.5
+  annigEffectPrefabs:
+  - {fileID: 5634991621469998104, guid: 1973412f34e35d242bf7e45c1dc52134, type: 3}
+  - {fileID: 2908285996579011434, guid: ddcc0f80b5de4e3418d4cf153c87af5f, type: 3}
   <Speed>k__BackingField: 0.08
   powerStonePrefab: {fileID: 3097250755770906865, guid: 7e4d54ed092960747b3927de56819250, type: 3}
   reward: 20

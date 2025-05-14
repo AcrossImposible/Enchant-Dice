@@ -777,6 +777,7 @@ MonoBehaviour:
   btnCoop: {fileID: 8881768483360285379}
   connectingInfo: {fileID: 7448100453181976823}
   btnOpenChest: {fileID: 8407505119891305082}
+  btnChestResult: {fileID: 8780705300818801180}
   btnTutor: {fileID: 6412598099042927270}
   coinAnim: {fileID: 916516398327968673}
   labelExp: {fileID: 3270587851106014630}
@@ -786,18 +787,6 @@ MonoBehaviour:
   labelMaxWave: {fileID: 6150130400619118770}
   chestResultParent: {fileID: 4824198842533590197}
   chestResultPrefab: {fileID: 1072225934248667717, guid: e4c315f2711bdeb4a9ac875bdf5333d6, type: 3}
-  allDices:
-  - {fileID: 2574441772293266418, guid: 312f145242329d24f99773a44750c0da, type: 3}
-  - {fileID: 479038948301914146, guid: 82d10ff8841bcbc44a3935bdeca66eab, type: 3}
-  - {fileID: 2434012368822229438, guid: cbb69b621f1a4d8429afaf920cd3df09, type: 3}
-  - {fileID: 2828315182236347549, guid: 3d4a5ae3fc9e2874abc23e70c9171016, type: 3}
-  - {fileID: 4668183576131248284, guid: b3eeede1a4a25af4d98b717b711ab199, type: 3}
-  - {fileID: 7525033917827511394, guid: d62ec27cf1a3f8b48a1db4a7233a606b, type: 3}
-  - {fileID: 2399593079788104027, guid: 6ac9ad80b1b4880418004b7728a15f62, type: 3}
-  - {fileID: 6165432775719588350, guid: b275b5aae60bd6e4abca5c95df68d23d, type: 3}
-  - {fileID: 4261554570971905992, guid: 9cc6d6a152fdc584796c06f0f36a8862, type: 3}
-  - {fileID: 1673176530906792792, guid: f8554d0b48790054ea798c1eeb3c11ca, type: 3}
-  - {fileID: 2850740275053074955, guid: 025950e89a72e8e45af330ae2a197db4, type: 3}
   tutorReset: {fileID: 6469078317068236240}
   inputNickname: {fileID: 9081468544650834321}
 --- !u!223 &6749001078171117697
@@ -2108,10 +2097,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2993397993047190266, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
-      propertyPath: m_Color.a
-      value: 0.9490196
-      objectReference: {fileID: 0}
     - target: {fileID: 6124826526165992883, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2309,6 +2294,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8630293006669316804}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8780705300818801180 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1017709273819492568, guid: c4677fd9848065e43bdfe915b9020891, type: 3}
+  m_PrefabInstance: {fileID: 8630293006669316804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3816705654485108822}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}

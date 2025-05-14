@@ -135,6 +135,9 @@ MonoBehaviour:
   labelHP: {fileID: 8961306355167272222}
   damageEffect: {fileID: 7756126378336111004}
   effectTransparency: 0.5
+  annigEffectPrefabs:
+  - {fileID: 5634991621469998104, guid: 1973412f34e35d242bf7e45c1dc52134, type: 3}
+  - {fileID: 2908285996579011434, guid: ddcc0f80b5de4e3418d4cf153c87af5f, type: 3}
   <Speed>k__BackingField: 0.09
   powerStonePrefab: {fileID: 3097250755770906865, guid: 7e4d54ed092960747b3927de56819250, type: 3}
   reward: 180

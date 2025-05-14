@@ -26,6 +26,7 @@ public class Menu : MonoBehaviour
     [SerializeField] public GameObject connectingInfo;
     
     [SerializeField] Button btnOpenChest;
+    [SerializeField] Button btnChestResult;
     [SerializeField] Button btnTutor;
 
     [Space]
@@ -89,6 +90,7 @@ public class Menu : MonoBehaviour
         btnEbash.onClick.AddListener(BtnEbash_Clicked);
         btnPVP.onClick.AddListener(BtnPVP_Clicked);
         btnOpenChest.onClick.AddListener(BtnChest_Clicked);
+        btnChestResult.onClick.AddListener(ChestResult_Clicked);
 
         //checkGameVersion.versionNotMatch += GameVersion_NotMatched;
         if (loaded)
@@ -136,6 +138,17 @@ public class Menu : MonoBehaviour
 #endif
         UpdateUI();
 
+    }
+
+    private void ChestResult_Clicked()
+    {
+        var canvasGroup = panelChestResult.GetComponent<CanvasGroup>();
+        LeanTweanTool.SetTransparencyImage(canvasGroup, 0).setOnComplete(OnComplete);
+
+        void OnComplete()
+        {
+            panelChestResult.SetActive(false);
+        }
     }
 
     bool userDataUpdate = false;
@@ -240,15 +253,18 @@ public class Menu : MonoBehaviour
         if (User.Data.countCards >= CARDS_TO_OPEN_CHEST)
         {
             panelChestResult.SetActive(true);
+            var canvasGroup =  panelChestResult.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 0;
+            LeanTweanTool.SetTransparencyImage(canvasGroup, 1f);
 
             foreach (Transform item in chestResultParent) Destroy(item.gameObject);
 
             int countTypesDice = Random.Range(2, 4);
             for (int i = 0; i < countTypesDice; i++)
             {
-                var randomIdx = Random.Range(0, allDices.Count);
+                var randomIdx = DiceStorage.Single.GetNormalizedRandomDicePrefab().idxInInventory;
                 var dice = allDices[randomIdx];
-                int countDices = Random.Range(1, 10);
+                int countDices = Random.Range(1, 8 + User.Data.lvl);
 
                 var diceUI = Instantiate(chestResultPrefab, chestResultParent);
                 diceUI.Init(countDices, dice);
