@@ -30,11 +30,11 @@ public class Dice : MonoBehaviour
 
     public int idxInInventory = -1;
 
-    public float finalFireRate;
+    [ReadOnlyField] public float finalFireRate;
 
     public Color Color => color;
     public int Stage { get; set; } = 0;
-    [field:SerializeField]
+    [field:SerializeField, ReadOnlyField]
     public int IncreaseStage { get; set; } = 0;
     public Cell Cell { get; set; }
     public Team Team => team;
@@ -42,11 +42,10 @@ public class Dice : MonoBehaviour
     protected Team team;
     protected Enemy target;
     protected User user;
+    protected bool stopAtack;
+    protected float currentRate;
 
     Transform gunWavePrefab;
-
-    bool stopAtack;
-    float currentRate;
     int idxFireableGun;
 
     public virtual void Init(User user, Team team, int stage)

@@ -9,13 +9,14 @@ using Random = UnityEngine.Random;
 public class Player : MonoBehaviour
 {
     [SerializeField] List<Cell> cells;
-    [SerializeField] protected Dice[] dicesPrefab;
 
     [HideInInspector]
     public List<Dice> allDices = new();
     public int Coins { get; set; } = 300;
     public int PriceDice { get; set; } = 50;
     public Dice[] Prefabs => dicesPrefab;
+
+    protected Dice[] dicesPrefab;
 
     public Action onCoinsUpdated;
     public Action<Dice> onDiceSpawned;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance)
             return;
+
+        dicesPrefab = DiceStorage.Single.allDices.ToArray();
 
         var isAI = GetComponent<AIBehaviour>();
         var isOffline = Photon.Pun.PhotonNetwork.CurrentRoom == null;

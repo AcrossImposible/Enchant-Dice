@@ -99,6 +99,9 @@ public class DiceInfo : MonoBehaviour
             case "Victim":
                 return "Жертва";
 
+            case "Thorns":
+                return "Шипы";
+
             //case "Energy":
             //    return "железо";
 
@@ -146,6 +149,9 @@ public class DiceInfo : MonoBehaviour
 
             case "Attacks the first enemy. This cube gives you a fixed number of points when combined with another Sacrificial Cube, Food, or Chameleon. For each point on the die during the combination, the player gets 80 points.":
                 return "Атакует первого врага. Этот кубик даёт фиксированное количество очков при объединении с другим Жертвенным кубиком, Питанием или Хамелеоном. За каждую точку на кубике во время объединения игрок получает 80 очков.";
+
+            case "Once every 5 seconds, it releases spikes in a random place on the field and disappears after a while. The spikes attack the area. The damage from spikes increases depending on the number of points and the gain level. Also, the higher the boost level, the higher the attack speed of the spikes.":
+                return "Раз в 5 секунд выпускает на поле шипы в случайное место и через некоторое время пропадают. Шипы атакуют по области. Урон от шипов увеличивается от количества точек и уровня усиления. Так же чем выше уровень усиления, тем выше скорость атаки шипов. ";
 
             default:
                 return string.Empty;

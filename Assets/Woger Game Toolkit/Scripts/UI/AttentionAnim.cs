@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AttentionAnim : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class AttentionAnim : MonoBehaviour
 
     WaitForSeconds halfDuration;
 
-    public void Play()
+    public void Play(Action callback = null)
     {
         if (!gameObject.activeInHierarchy)
             return;
@@ -29,7 +30,9 @@ public class AttentionAnim : MonoBehaviour
 
             yield return halfDuration;
 
-            transform.LeanScale(Vector3.one, duration / 4f).setEaseInOutQuad();
+            transform.LeanScale(Vector3.one, duration / 4f)
+                .setEaseInOutQuad()
+                .setOnComplete(callback);
         }
 
     }

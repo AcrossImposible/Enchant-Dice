@@ -21,7 +21,11 @@ public class PanelShop : MonoBehaviour
     [SerializeField] GameObject coinsRewardEffectPrefab;
     [SerializeField] GameObject coinsFlyEffectPrefab;
     [SerializeField] InfoPopup infoPopupPrefab;
-    [SerializeField] TMP_Text rewardCoinsTitle; 
+    [SerializeField] TMP_Text rewardCoinsTitle;
+
+    [Header(" ¿ÃÕ» «¿ –≈ À¿Ã”")]
+    [SerializeField] Button btnStonesReward;
+    [SerializeField] Sprite stoneSprite;
 
     [HideInInspector] public UnityEvent<float> onCoinsUpdate;
 
@@ -31,6 +35,8 @@ public class PanelShop : MonoBehaviour
 
     const string coinsFreeKey = "coinsFreeKey";
     const string stonesFreeKey = "stonesFreeKey";
+
+    const int REWARD_STONES_ID = 5;
 
     AvailableView btnFreeCoinsAvailable;
     AvailableView btnFreeStonesAvailable;
@@ -59,6 +65,7 @@ public class PanelShop : MonoBehaviour
 
         btnFreeCoins.onClick.AddListener(FreeCoins_Clicked);
         btnFreeStones.onClick.AddListener(FreeStones_Clicked);
+        btnStonesReward.onClick.AddListener(RewardStones_Clicked);
 
         for (int i = 0; i < btnsCoinsRewarded.Length; i++)
         {
@@ -71,6 +78,18 @@ public class PanelShop : MonoBehaviour
         btnFreeStonesAvailable = btnFreeStones.GetComponent<AvailableView>();
 
         CoinsRewardCheckAvailable();
+    }
+
+    private void RewardStones_Clicked()
+    {
+        btnStonesReward.GetComponent<AttentionAnim>().Play(ShowAd);
+
+        void ShowAd()
+        {
+#if UNITY_WEBGL && YG_PLUGIN_YANDEX_GAME
+            YG.YandexGame.RewVideoShow(REWARD_STONES_ID);
+#endif
+        }
     }
 
     private void FreeStones_Clicked()
@@ -112,6 +131,15 @@ public class PanelShop : MonoBehaviour
 
     private void RewardVideo_Watched(int adID)
     {
+
+        if (adID == REWARD_STONES_ID)
+        {
+            ToastNotify.Show(coinsRewardNotifyPrefab, $"+{100}", stoneSprite);
+            User.Data.countStones += 100;
+            Saver.Save();
+            return;
+        }
+
         rewardID = adID;
 
         StartCoroutine(Delay());

@@ -318,6 +318,10 @@ public class UI : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(labelCountPowerStones.transform.parent as RectTransform);
+
+            yield return null;
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(labelCountPowerStones.transform.parent.parent as RectTransform);
         }
     }
 

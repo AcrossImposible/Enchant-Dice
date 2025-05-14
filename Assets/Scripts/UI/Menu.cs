@@ -47,16 +47,18 @@ public class Menu : MonoBehaviour
     [Space]
 
     [SerializeField] CardChestResult chestResultPrefab;
-    [SerializeField] List<Dice> allDices;
+    
 
     [SerializeField] Button tutorReset;
     [SerializeField] TMP_InputField inputNickname;
+
+    List<Dice> allDices;
 
     static bool loaded;
 
     public void Init()
     {
-        //print(YG.YandexGame.savesData.tutorCompleted);
+        allDices ??= DiceStorage.Single.allDices;
 
         gameObject.SetActive(true);
 

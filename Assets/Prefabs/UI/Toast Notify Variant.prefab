@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4323626844838990647, guid: 34785f698b7b12746b066c09eb436298, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4693557091386271601, guid: 34785f698b7b12746b066c09eb436298, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -370,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693557091386271601, guid: 34785f698b7b12746b066c09eb436298, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 253.03
       objectReference: {fileID: 0}
     - target: {fileID: 4693557091386271601, guid: 34785f698b7b12746b066c09eb436298, type: 3}
       propertyPath: m_SizeDelta.y

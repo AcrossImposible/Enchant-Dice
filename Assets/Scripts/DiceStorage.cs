@@ -56,7 +56,7 @@ public class DiceStorage : MonoBehaviour
             .ToList();
     }
 
-    public Dice GetRandomDicePrefab()
+    public Dice GetNormalizedRandomDicePrefab()
     {
         // 1) Выбираем группу по весам groupWeight (как раньше)
         float totalGroupWeight = groups.Sum(g => Mathf.Max(0f, g.groupWeight));

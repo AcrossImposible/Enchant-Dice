@@ -634,6 +634,14 @@ MonoBehaviour:
   trajectoryPoints:
   - {fileID: 991533677}
   - {fileID: 487245713}
+  trajectoryMineCoop:
+  - {fileID: 1869146263}
+  - {fileID: 991533677}
+  - {fileID: 487245713}
+  trajectoryOtherCoop:
+  - {fileID: 291119493}
+  - {fileID: 991533677}
+  - {fileID: 487245713}
   trajectoryMinePoints: []
   trajectoryOtherPoints: []
   <IsPVP>k__BackingField: 0
@@ -1067,10 +1075,6 @@ PrefabInstance:
       value: 121.55
       objectReference: {fileID: 0}
     - target: {fileID: 213359672581983623, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 68.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 213359672581983623, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
@@ -1197,18 +1201,6 @@ PrefabInstance:
     - target: {fileID: 7545680171021326339, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -34.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940756097105658781, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940756097105658781, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940756097105658781, guid: 12149ad648af6ca4bb6309ddb22cdca9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -29.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

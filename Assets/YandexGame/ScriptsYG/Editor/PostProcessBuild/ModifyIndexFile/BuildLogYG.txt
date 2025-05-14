@@ -1,2 +1,2 @@
 Build path: H:/IGROSTROY/Enchant Dice/Builds/WGL
-Build number: 64
+Build number: 67

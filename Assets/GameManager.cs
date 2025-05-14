@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.Events;
 using System;
 using static Settings;
 using Random = UnityEngine.Random;
@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Transform[] spawnEnemyPoints;
     [Header(" ŒŒœ◊» ")] [Space(3)]
     [SerializeField] public Transform[] trajectoryPoints;
+    [SerializeField] public Transform[] trajectoryMineCoop;
+    [SerializeField] public Transform[] trajectoryOtherCoop;
     [Header("›œ¿ÿ»ÀŒ¬Œ")] [Space(3)]
     [SerializeField] public Transform[] trajectoryMinePoints;
     [SerializeField] public Transform[] trajectoryOtherPoints;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    public UnityEvent onEnemiesListChange;
     
     public List<Player> allPlayers = new();
     public List<RespawnData> respawnQueue = new();
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
     public bool complete;
     public bool spawning;
 
+   
     
 
     private void Awake()
@@ -79,6 +83,7 @@ public class GameManager : MonoBehaviour
     private void Enemy_Anniged(Enemy enemy)
     {
         allEnemies.Remove(enemy);
+        onEnemiesListChange?.Invoke();
 
         if (allEnemies.Count == 0 && !spawning)
         {
@@ -147,6 +152,7 @@ public class GameManager : MonoBehaviour
             }
 
             allEnemies.Add(enemy);
+            onEnemiesListChange?.Invoke();
         }
     }
     
@@ -172,7 +178,15 @@ public class GameManager : MonoBehaviour
             Camera.main.orthographicSize = curve.Evaluate(resFactor);
         }
     }
-    
+
+    private void OnDestroy()
+    {
+        if (LeanTween.isTweening())
+        {
+            LeanTween.cancelAll();
+        }
+    }
+
 }
 
 [Serializable]
