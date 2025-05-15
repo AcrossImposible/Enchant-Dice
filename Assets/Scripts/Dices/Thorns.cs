@@ -53,6 +53,7 @@ public class Thorns : Dice
 
         var projectile = Instantiate(thornProjectilePrefab, transform.position, Quaternion.identity);
         var damage = CalculateDamage();
+        damage = CalculateCriticalDamage(damage, out bool isCrit);
         var attackSpeed = 1.8f + IncreaseStage;
         if (IncreaseStage == 5)
         {

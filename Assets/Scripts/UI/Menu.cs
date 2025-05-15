@@ -148,7 +148,7 @@ public class Menu : MonoBehaviour
         void OnComplete()
         {
             panelChestResult.SetActive(false);
-        }
+        } 
     }
 
     bool userDataUpdate = false;

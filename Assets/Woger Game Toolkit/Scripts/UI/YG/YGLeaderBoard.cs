@@ -97,7 +97,7 @@ public class YGLeaderBoard : MonoBehaviour
             if (!YandexGame.auth)
             {
                 var auth = Language.Rus 
-                    ? "Войди в свой Яндекс аккаунт, чтобы соревноваться с другими игроками!"
+                    ? "Войди в свой аккаунт, чтобы соревноваться с другими игроками!"
                     : "Log in to your account to compete with other players!";
                 title.SetText($"<color=#FFF300>{auth}</color>");
             }

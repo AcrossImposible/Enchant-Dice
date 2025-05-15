@@ -72,6 +72,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 2457184836326278690, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_Spacing
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457184836326278690, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457184836326278690, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 430
+      objectReference: {fileID: 0}
     - target: {fileID: 2538680564833290103, guid: a267e828fe246bc4ba3a6577153ff16d, type: 3}
       propertyPath: m_IsActive
       value: 0
