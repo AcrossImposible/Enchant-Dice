@@ -645,6 +645,9 @@ MonoBehaviour:
   trajectoryMinePoints: []
   trajectoryOtherPoints: []
   <IsPVP>k__BackingField: 0
+  onEnemiesListChange:
+    m_PersistentCalls:
+      m_Calls: []
   allPlayers: []
   respawnQueue: []
   allEnemies: []
@@ -983,6 +986,10 @@ PrefabInstance:
     - target: {fileID: 3052965703339161528, guid: 1bf19a87dbdd5b4449e91c37da978b39, type: 3}
       propertyPath: m_Name
       value: Caustic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3052965703339161528, guid: 1bf19a87dbdd5b4449e91c37da978b39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
