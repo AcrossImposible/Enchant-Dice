@@ -1,2 +1,2 @@
-Build path: D:/GAME DEVELOP/Enchant Dice/Builds/WGL
-Build number: 72
+Build path: E:/GAME DEVELOPMENT/Project Enchant Dice/Random Increase Dice [YG]/Build/WGL
+Build number: 75
