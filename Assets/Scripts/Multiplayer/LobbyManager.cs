@@ -28,7 +28,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public System.Action<string> onPhotonConnection;
     string roomType;
+    float createRoomTimer;
     bool isOffline;
+    bool startCreateRoom;
 
     void Awake()
     {
@@ -159,7 +161,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         connectingInfo?.SetActive(true);
     }
-
+    
     void CreateRoom()
     {  
         RoomOptions roomOptions = new()
@@ -174,9 +176,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomPropertiesForLobby = new string[] { "t" };
 
         PhotonNetwork.CreateRoom(null, roomOptions);
+        startCreateRoom = true;
     }
 
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
 
+        print($"!!! Ошибка создания команты {returnCode}# {message}");
+
+        OnLeftRoom();
+    }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -305,11 +315,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             print(PhotonNetwork.CountOfRooms);
         }
 
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    print("запускаю коннект");
-        //    PhotonNetwork.ConnectUsingSettings();
-        //}
+        if (startCreateRoom)
+        {
+            createRoomTimer += Time.deltaTime;
+            if (createRoomTimer > 1.5f)
+            {
+                startCreateRoom = false;
+                OnLeftRoom();
+            }
+        }
 
         CheckConnection();
     }
